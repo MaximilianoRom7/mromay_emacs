@@ -1,0 +1,88 @@
+;; Object service/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "service/"
+  :tables (list 
+   (semanticdb-table "model.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("functools" include nil nil [26 53])
+            ("logging" include nil nil [54 68])
+            ("psycopg2" include nil nil [69 134])
+            ("random" include nil nil [135 148])
+            ("threading" include nil nil [149 165])
+            ("time" include nil nil [166 177])
+            ("openerp" include nil nil [179 193])
+            ("openerp.tools.translate" include nil nil [194 239])
+            ("openerp.osv.orm" include nil nil [240 278])
+            ("contextlib" include nil nil [279 316])
+            ("security" include nil nil [318 333])
+            ("_logger" variable nil nil [335 372])
+            ("PG_CONCURRENCY_ERRORS_TO_RETRY" variable nil nil [374 502])
+            ("MAX_TRIES_ON_CONCURRENCY_FAILURE" variable nil nil [503 539])
+            ("dispatch" function (:arguments 
+              ( ("method" variable nil (reparse-symbol function_parameters) [554 560])
+                ("params" variable nil (reparse-symbol function_parameters) [562 568]))              ) nil [541 1303])
+            ("check" function (:arguments 
+              ( ("f" variable nil (reparse-symbol function_parameters) [1314 1315]))              ) nil [1304 7167])
+            ("execute_cr" function (:arguments 
+              ( ("cr" variable nil (reparse-symbol function_parameters) [7183 7185])
+                ("uid" variable nil (reparse-symbol function_parameters) [7187 7190])
+                ("obj" variable nil (reparse-symbol function_parameters) [7192 7195])
+                ("method" variable nil (reparse-symbol function_parameters) [7197 7203])
+                ("args" variable nil (reparse-symbol function_parameters) [7205 7210])
+                ("kw" variable nil (reparse-symbol function_parameters) [7212 7216]))              ) nil [7168 7423])
+            ("execute_kw" function (:arguments 
+              ( ("db" variable nil (reparse-symbol function_parameters) [7439 7441])
+                ("uid" variable nil (reparse-symbol function_parameters) [7443 7446])
+                ("obj" variable nil (reparse-symbol function_parameters) [7448 7451])
+                ("method" variable nil (reparse-symbol function_parameters) [7453 7459])
+                ("args" variable nil (reparse-symbol function_parameters) [7461 7465])
+                ("kw" variable nil (reparse-symbol function_parameters) [7467 7469]))              ) nil [7424 7537])
+            ("execute" function
+               (:decorators 
+                  ( ("check" function (:type "decorator") nil nil))                  
+                :arguments 
+                  ( ("db" variable nil (reparse-symbol function_parameters) [7557 7559])
+                    ("uid" variable nil (reparse-symbol function_parameters) [7561 7564])
+                    ("obj" variable nil (reparse-symbol function_parameters) [7566 7569])
+                    ("method" variable nil (reparse-symbol function_parameters) [7571 7577])
+                    ("args" variable nil (reparse-symbol function_parameters) [7579 7584])
+                    ("kw" variable nil (reparse-symbol function_parameters) [7586 7590]))                  )
+                nil [7538 8035])
+            ("exec_workflow_cr" function (:arguments 
+              ( ("cr" variable nil (reparse-symbol function_parameters) [8057 8059])
+                ("uid" variable nil (reparse-symbol function_parameters) [8061 8064])
+                ("obj" variable nil (reparse-symbol function_parameters) [8066 8069])
+                ("signal" variable nil (reparse-symbol function_parameters) [8071 8077])
+                ("args" variable nil (reparse-symbol function_parameters) [8079 8084]))              ) nil [8036 8189])
+            ("exec_workflow" function
+               (:decorators 
+                  ( ("check" function (:type "decorator") nil nil))                  
+                :arguments 
+                  ( ("db" variable nil (reparse-symbol function_parameters) [8216 8218])
+                    ("uid" variable nil (reparse-symbol function_parameters) [8220 8223])
+                    ("obj" variable nil (reparse-symbol function_parameters) [8225 8228])
+                    ("signal" variable nil (reparse-symbol function_parameters) [8230 8236])
+                    ("args" variable nil (reparse-symbol function_parameters) [8238 8243]))                  )
+                nil [8191 8353]))          
+    :file "model.py"
+    :pointmax 8420
+    :fsize 8421
+    :lastmodtime '(22045 45134 0 0)
+    :unmatched-syntax '((INDENT_BLOCK 3606 . 3644) (NEWLINE 3605 . 3606) (COLON 3604 . 3605) (FINALLY 3597 . 3604))
+    )
+   (semanticdb-table "security.py"
+    :file "security.py"
+    :fsize 1507
+    :lastmodtime '(21998 11979 0 0)
+    )
+   (semanticdb-table "server.py"
+    :file "server.py"
+    :fsize 37515
+    :lastmodtime '(22296 10699 0 0)
+    )
+   )
+  :file "!home!skyline!Development!odoo!mera!odoo-8.0-20160428!openerp!service!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

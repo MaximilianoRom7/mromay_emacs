@@ -1,0 +1,50 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("9"
+ (filename . "/home/skyline/Development/versions/repos/odoo.2/lib/python2.7/site-packages/odoo/odoo/addons/base/ir/ir_actions.py")
+ (front-context-string . "fields.One2many(")
+ (rear-context-string . "\n    view_ids = ")
+ (position . 14779))
+("8"
+ (filename . "/home/skyline/Development/versions/repos/odoo.2/lib/python2.7/site-packages/odoo/odoo/addons/base/ir/ir_actions.py")
+ (front-context-string . "ir.actions.act_w")
+ (rear-context-string . "ields.One2many('")
+ (position . 14796))
+("org-refile-last-stored"
+ (filename . "/home/skyline/Development/org/first.org")
+ (front-context-string . "** 444\n   444\n\n*")
+ (rear-context-string . "44\n   444\n     \n")
+ (position . 253))
+("5"
+ (filename . "/home/skyline/Development/odoo_10/odoo/aeroo_reports/report_aeroo/report_xml.py")
+ (front-context-string . "report_sxw_conte")
+ (rear-context-string . "ntent_inv\")\n    ")
+ (position . 16174))
+("6"
+ (filename . "/home/skyline/Development/versions/repos/odoo.2/lib/python2.7/site-packages/odoo/odoo/models.py")
+ (front-context-string . "(self):\n        ")
+ (rear-context-string . "get_external_ids")
+ (position . 207905))
+("4"
+ (filename . "/home/skyline/Development/odoo_10/odoo/aeroo_reports/report_aeroo/report_aeroo.py")
+ (front-context-string . "data, report_xml")
+ (rear-context-string . "doc(self, docs, ")
+ (position . 18415))
+("3"
+ (filename . "/home/skyline/Development/odoo_10/odoo/addons/report/models/report.py")
+ (front-context-string . "            'rep")
+ (rear-context-string . "ns.report.xml',\n")
+ (position . 12965))
+("2"
+ (filename . "/home/skyline/Development/odoo_10/odoo/l10n_ar_aeroo/report_extended_account/models/account_invoice.py")
+ (front-context-string . "n(self, report_n")
+ (rear-context-string . "port'].get_actio")
+ (position . 1299))
+("1"
+ (filename . "/home/skyline/Development/enterprise/1/odoo/addons/locale_ar/l10n_ar_padron_afip/models/res_partner.py")
+ (front-context-string . "PadronAFIP()\n   ")
+ (rear-context-string . "       padron = ")
+ (position . 3520))
+)

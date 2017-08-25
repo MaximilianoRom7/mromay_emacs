@@ -1,0 +1,8 @@
+/root/.emacs
+/root/#.emacs#
+/etc/init.d/nagios
+/etc/init.d/#nagios#
+/usr/lib/nagios/plugins/check_rpc
+/usr/lib/nagios/plugins/#check_rpc#
+/usr/lib/nagios/plugins/check_breeze
+/usr/lib/nagios/plugins/#check_breeze#

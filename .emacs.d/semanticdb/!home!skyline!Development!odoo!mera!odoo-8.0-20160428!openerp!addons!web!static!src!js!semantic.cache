@@ -1,0 +1,18 @@
+;; Object js/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "js/"
+  :tables (list 
+   (semanticdb-table "data.js"
+    :major-mode 'js-mode
+    :tags nil
+    :file "data.js"
+    :pointmax 48902
+    :fsize 48901
+    :lastmodtime '(22569 63828 953950 70000)
+    :unmatched-syntax '((PAREN_BLOCK 48849 . 48851) (PAREN_BLOCK 2 . 48849) (PAREN_BLOCK 48843 . 48845) (PAREN_BLOCK 2 . 48843) (PAREN_BLOCK 48792 . 48794) (PAREN_BLOCK 2 . 48792) (PAREN_BLOCK 48663 . 48665) (PAREN_BLOCK 2 . 48663) (PAREN_BLOCK 48656 . 48658) (PAREN_BLOCK 2 . 48656) (PAREN_BLOCK 48656 . 48658) (PAREN_BLOCK 2 . 48656) (PAREN_BLOCK 48612 . 48614) (PAREN_BLOCK 2 . 48612))
+    )
+   )
+  :file "!home!skyline!Development!odoo!mera!odoo-8.0-20160428!openerp!addons!web!static!src!js!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

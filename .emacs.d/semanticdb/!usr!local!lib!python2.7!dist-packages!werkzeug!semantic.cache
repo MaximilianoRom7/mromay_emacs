@@ -1,0 +1,471 @@
+;; Object werkzeug/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "werkzeug/"
+  :tables (list 
+   (semanticdb-table "local.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("\"\"\"
+    werkzeug.local
+    ~~~~~~~~~~~~~~
+
+    This module implements context-local objects.
+
+    :copyright: (c) 2014 by the Werkzeug Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+\"\"\"" code nil nil [25 248])
+            ("functools" include nil nil [249 285])
+            ("werkzeug.wsgi" include nil nil [286 327])
+            ("werkzeug._compat" include nil nil [328 377])
+            ("try" code nil nil [577 759])
+            ("release_local" function
+               (:documentation "Releases the contents of the local for the current context.
+    This makes it possible to use locals without a manager.
+
+    Example::
+
+        >>> loc = Local()
+        >>> loc.foo = 42
+        >>> release_local(loc)
+        >>> hasattr(loc, 'foo')
+        False
+
+    With this function one can release :class:`Local` objects as well
+    as :class:`LocalStack` objects.  However it is not possible to
+    release data held by proxies that way, one always has to retain
+    a reference to the underlying local object in order to be able
+    to release it.
+
+    .. versionadded:: 0.6.1
+    "
+                :arguments 
+                  ( ("local" variable nil (reparse-symbol function_parameters) [779 784]))                  )
+                nil [761 1417])
+            ("Local" type
+               (:superclasses ("object")
+                :members 
+                  ( ("__slots__" variable nil (reparse-symbol indented_block_body) [1444 1489])
+                    ("__init__" function
+                       (:suite 
+                          ( ("object" code nil (reparse-symbol indented_block_body) [1523 1566])
+                            ("object" code nil (reparse-symbol indented_block_body) [1575 1628]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [1508 1512]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [1495 1629])
+                    ("__iter__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [1647 1651]))                          )
+                        (reparse-symbol indented_block_body) [1634 1700])
+                    ("__call__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [1718 1722])
+                            ("proxy" variable nil (reparse-symbol function_parameters) [1724 1729]))                          
+                        :documentation "Create a proxy for a name.")
+                        (reparse-symbol indented_block_body) [1705 1812])
+                    ("__release_local__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [1839 1843]))                          )
+                        (reparse-symbol indented_block_body) [1817 1904])
+                    ("__getattr__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [1925 1929])
+                            ("name" variable nil (reparse-symbol function_parameters) [1931 1935]))                          )
+                        (reparse-symbol indented_block_body) [1909 2080])
+                    ("__setattr__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2101 2105])
+                            ("name" variable nil (reparse-symbol function_parameters) [2107 2111])
+                            ("value" variable nil (reparse-symbol function_parameters) [2113 2118]))                          )
+                        (reparse-symbol indented_block_body) [2085 2316])
+                    ("__delattr__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2337 2341])
+                            ("name" variable nil (reparse-symbol function_parameters) [2343 2347]))                          )
+                        (reparse-symbol indented_block_body) [2321 2489]))                  
+                :type "class")
+                nil [1419 2489])
+            ("LocalStack" type
+               (:documentation "This class works similar to a :class:`Local` but keeps a stack
+    of objects instead.  This is best explained with an example::
+
+        >>> ls = LocalStack()
+        >>> ls.push(42)
+        >>> ls.top
+        42
+        >>> ls.push(23)
+        >>> ls.top
+        23
+        >>> ls.pop()
+        23
+        >>> ls.top
+        42
+
+    They can be force released by using a :class:`LocalManager` or with
+    the :func:`release_local` function but the correct way is to pop the
+    item from the stack after using.  When the stack is empty it will
+    no longer be bound to the current context (and as such released).
+
+    By calling the stack without arguments it returns a proxy that resolves to
+    the topmost item on the stack.
+
+    .. versionadded:: 0.6.1
+    "
+                :superclasses ("object")
+                :members 
+                  ( ("__init__" function
+                       (:suite 
+                          ( ("self" variable nil (reparse-symbol indented_block_body) [3325 3346]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3310 3314]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [3297 3347])
+                    ("__release_local__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3374 3378]))                          )
+                        (reparse-symbol indented_block_body) [3352 3421])
+                    ("_get__ident_func__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3449 3453]))                          )
+                        (reparse-symbol indented_block_body) [3426 3498])
+                    ("_set__ident_func__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3525 3529])
+                            ("value" variable nil (reparse-symbol function_parameters) [3531 3536]))                          )
+                        (reparse-symbol indented_block_body) [3502 3604])
+                    ("__ident_func__" variable nil (reparse-symbol indented_block_body) [3608 3673])
+                    ("del" code nil (reparse-symbol indented_block_body) [3678 3720])
+                    ("__call__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3739 3743]))                          )
+                        (reparse-symbol indented_block_body) [3726 3932])
+                    ("push" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3946 3950])
+                            ("obj" variable nil (reparse-symbol function_parameters) [3952 3955]))                          
+                        :documentation "Pushes a new item to the stack")
+                        (reparse-symbol indented_block_body) [3937 4156])
+                    ("pop" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4169 4173]))                          
+                        :documentation "Removes the topmost item from the stack, will return the
+        old value or `None` if the stack was already empty.
+        ")
+                        (reparse-symbol indented_block_body) [4161 4561])
+                    ("top" function
+                       (:parent "dummy"
+                        :decorators 
+                          ( ("property" function (:type "decorator") nil nil))                          
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4588 4592]))                          
+                        :documentation "The topmost item on the stack.  If the stack is empty,
+        `None` is returned.
+        ")
+                        (reparse-symbol indented_block_body) [4566 4824]))                  
+                :type "class")
+                nil [2491 4824])
+            ("LocalManager" type
+               (:documentation "Local objects cannot manage themselves. For that you need a local
+    manager.  You can pass a local manager multiple locals or add them later
+    by appending them to `manager.locals`.  Everytime the manager cleans up
+    it, will clean up all the data left in the locals for this context.
+
+    The `ident_func` parameter can be added to override the default ident
+    function for the wrapped locals.
+
+    .. versionchanged:: 0.6.1
+       Instead of a manager the :func:`release_local` function can be used
+       as well.
+
+    .. versionchanged:: 0.7
+       `ident_func` was added.
+    "
+                :superclasses ("object")
+                :members 
+                  ( ("__init__" function
+                       (:suite 
+                          ( ("if" code nil (reparse-symbol indented_block_body) [5517 5693])
+                            ("if" code nil (reparse-symbol indented_block_body) [5701 5933]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [5472 5476])
+                            ("locals" variable nil (reparse-symbol function_parameters) [5478 5484])
+                            ("ident_func" variable nil (reparse-symbol function_parameters) [5491 5501]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [5459 5933])
+                    ("get_ident" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [5952 5956]))                          
+                        :documentation "Return the context identifier the local objects use internally for
+        this context.  You cannot override this method to change the behavior
+        but use it to link other context local objects (such as SQLAlchemy's
+        scoped sessions) to the Werkzeug locals.
+
+        .. versionchanged:: 0.7
+           Yu can pass a different ident function to the local manager that
+           will then be propagated to all the locals passed to the
+           constructor.
+        ")
+                        (reparse-symbol indented_block_body) [5938 6486])
+                    ("cleanup" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [6503 6507]))                          
+                        :documentation "Manually clean up the data in the locals for this context.  Call
+        this at the end of the request or use `make_middleware()`.
+        ")
+                        (reparse-symbol indented_block_body) [6491 6732])
+                    ("make_middleware" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [6757 6761])
+                            ("app" variable nil (reparse-symbol function_parameters) [6763 6766]))                          
+                        :documentation "Wrap a WSGI application so that cleaning up happens after
+        request end.
+        ")
+                        (reparse-symbol indented_block_body) [6737 7027])
+                    ("middleware" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [7047 7051])
+                            ("func" variable nil (reparse-symbol function_parameters) [7053 7057]))                          
+                        :documentation "Like `make_middleware` but for decorating functions.
+
+        Example usage::
+
+            @manager.middleware
+            def application(environ, start_response):
+                ...
+
+        The difference to `make_middleware` is that the function passed
+        will have all the arguments copied from the inner application
+        (name, docstring, module).
+        ")
+                        (reparse-symbol indented_block_body) [7032 7510])
+                    ("__repr__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [7528 7532]))                          )
+                        (reparse-symbol indented_block_body) [7515 7650]))                  
+                :type "class")
+                nil [4826 7650])
+            ("LocalProxy" type
+               (:documentation "Acts as a proxy for a werkzeug local.  Forwards all operations to
+    a proxied object.  The only operations not supported for forwarding
+    are right handed operands and any kind of assignment.
+
+    Example usage::
+
+        from werkzeug.local import Local
+        l = Local()
+
+        # these are proxies
+        request = l('request')
+        user = l('user')
+
+
+        from werkzeug.local import LocalStack
+        _response_local = LocalStack()
+
+        # this is a proxy
+        response = _response_local()
+
+    Whenever something is bound to l.user / l.request the proxy objects
+    will forward all operations.  If no object is bound a :exc:`RuntimeError`
+    will be raised.
+
+    To create proxies to :class:`Local` or :class:`LocalStack` objects,
+    call the object as shown above.  If you want to have a proxy to an
+    object looked up by a function, you can (as of Werkzeug 0.6.1) pass
+    a function to the :class:`LocalProxy` constructor::
+
+        session = LocalProxy(lambda: get_current_request().session)
+
+    .. versionchanged:: 0.6.1
+       The class can be instanciated with a callable as well now.
+    "
+                :superclasses ("object")
+                :members 
+                  ( ("__slots__" variable nil (reparse-symbol indented_block_body) [8838 8885])
+                    ("__init__" function
+                       (:suite 
+                          ( ("object" code nil (reparse-symbol indented_block_body) [8937 8990])
+                            ("object" code nil (reparse-symbol indented_block_body) [8999 9041]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [8904 8908])
+                            ("local" variable nil (reparse-symbol function_parameters) [8910 8915])
+                            ("name" variable nil (reparse-symbol function_parameters) [8917 8921]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [8891 9042])
+                    ("_get_current_object" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [9071 9075]))                          
+                        :documentation "Return the current object.  This is useful if you want the real
+        object behind the proxy at a time for performance reasons or because
+        you want to pass the object into a different context.
+        ")
+                        (reparse-symbol indented_block_body) [9047 9569])
+                    ("__dict__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [9601 9605]))                          
+                        :decorators 
+                          ( ("property" function (:type "decorator") nil nil))                          )
+                        (reparse-symbol indented_block_body) [9574 9750])
+                    ("__repr__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [9768 9772]))                          )
+                        (reparse-symbol indented_block_body) [9755 9947])
+                    ("__bool__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [9965 9969]))                          )
+                        (reparse-symbol indented_block_body) [9952 10091])
+                    ("__unicode__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [10112 10116]))                          )
+                        (reparse-symbol indented_block_body) [10096 10246])
+                    ("__dir__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [10263 10267]))                          )
+                        (reparse-symbol indented_block_body) [10251 10385])
+                    ("__getattr__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [10406 10410])
+                            ("name" variable nil (reparse-symbol function_parameters) [10412 10416]))                          )
+                        (reparse-symbol indented_block_body) [10390 10561])
+                    ("__setitem__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [10582 10586])
+                            ("key" variable nil (reparse-symbol function_parameters) [10588 10591])
+                            ("value" variable nil (reparse-symbol function_parameters) [10593 10598]))                          )
+                        (reparse-symbol indented_block_body) [10566 10649])
+                    ("__delitem__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [10670 10674])
+                            ("key" variable nil (reparse-symbol function_parameters) [10676 10679]))                          )
+                        (reparse-symbol indented_block_body) [10654 10726])
+                    ("if" code nil (reparse-symbol indented_block_body) [10731 10988])
+                    ("__setattr__" variable nil (reparse-symbol indented_block_body) [10993 11061])
+                    ("__delattr__" variable nil (reparse-symbol indented_block_body) [11066 11128])
+                    ("__str__" variable nil (reparse-symbol indented_block_body) [11133 11181])
+                    ("__lt__" variable nil (reparse-symbol indented_block_body) [11186 11235])
+                    ("__le__" variable nil (reparse-symbol indented_block_body) [11240 11290])
+                    ("__eq__" variable nil (reparse-symbol indented_block_body) [11295 11345])
+                    ("__ne__" variable nil (reparse-symbol indented_block_body) [11350 11400])
+                    ("__gt__" variable nil (reparse-symbol indented_block_body) [11405 11454])
+                    ("__ge__" variable nil (reparse-symbol indented_block_body) [11459 11509])
+                    ("__cmp__" variable nil (reparse-symbol indented_block_body) [11514 11568])
+                    ("__hash__" variable nil (reparse-symbol indented_block_body) [11573 11623])
+                    ("x" code nil (reparse-symbol indented_block_body) [11659 11692])
+                    ("__len__" variable nil (reparse-symbol indented_block_body) [11697 11745])
+                    ("__getitem__" variable nil (reparse-symbol indented_block_body) [11750 11803])
+                    ("__iter__" variable nil (reparse-symbol indented_block_body) [11808 11858])
+                    ("__contains__" variable nil (reparse-symbol indented_block_body) [11863 11919])
+                    ("__add__" variable nil (reparse-symbol indented_block_body) [11924 11974])
+                    ("__sub__" variable nil (reparse-symbol indented_block_body) [11979 12029])
+                    ("__mul__" variable nil (reparse-symbol indented_block_body) [12034 12084])
+                    ("__floordiv__" variable nil (reparse-symbol indented_block_body) [12089 12145])
+                    ("__mod__" variable nil (reparse-symbol indented_block_body) [12150 12200])
+                    ("__divmod__" variable nil (reparse-symbol indented_block_body) [12205 12268])
+                    ("__pow__" variable nil (reparse-symbol indented_block_body) [12273 12324])
+                    ("__lshift__" variable nil (reparse-symbol indented_block_body) [12329 12383])
+                    ("__rshift__" variable nil (reparse-symbol indented_block_body) [12388 12442])
+                    ("__and__" variable nil (reparse-symbol indented_block_body) [12447 12497])
+                    ("__xor__" variable nil (reparse-symbol indented_block_body) [12502 12552])
+                    ("__or__" variable nil (reparse-symbol indented_block_body) [12557 12606])
+                    ("__div__" variable nil (reparse-symbol indented_block_body) [12611 12668])
+                    ("__truediv__" variable nil (reparse-symbol indented_block_body) [12673 12738])
+                    ("__neg__" variable nil (reparse-symbol indented_block_body) [12743 12789])
+                    ("__pos__" variable nil (reparse-symbol indented_block_body) [12794 12840])
+                    ("__abs__" variable nil (reparse-symbol indented_block_body) [12845 12893])
+                    ("__invert__" variable nil (reparse-symbol indented_block_body) [12898 12947])
+                    ("__complex__" variable nil (reparse-symbol indented_block_body) [12952 13008])
+                    ("__int__" variable nil (reparse-symbol indented_block_body) [13013 13061])
+                    ("__long__" variable nil (reparse-symbol indented_block_body) [13066 13116])
+                    ("__float__" variable nil (reparse-symbol indented_block_body) [13121 13173])
+                    ("__oct__" variable nil (reparse-symbol indented_block_body) [13178 13226])
+                    ("__hex__" variable nil (reparse-symbol indented_block_body) [13231 13279])
+                    ("__index__" variable nil (reparse-symbol indented_block_body) [13284 13341])
+                    ("__coerce__" variable nil (reparse-symbol indented_block_body) [13346 13412])
+                    ("__enter__" variable nil (reparse-symbol indented_block_body) [13417 13474])
+                    ("x" code nil (reparse-symbol indented_block_body) [13510 13552])
+                    ("__radd__" variable nil (reparse-symbol indented_block_body) [13557 13608])
+                    ("__rsub__" variable nil (reparse-symbol indented_block_body) [13613 13664])
+                    ("__rmul__" variable nil (reparse-symbol indented_block_body) [13669 13720])
+                    ("__rdiv__" variable nil (reparse-symbol indented_block_body) [13725 13776])
+                    ("if" code nil (reparse-symbol indented_block_body) [13781 13907])
+                    ("__rfloordiv__" variable nil (reparse-symbol indented_block_body) [13911 13968])
+                    ("__rmod__" variable nil (reparse-symbol indented_block_body) [13973 14024])
+                    ("__rdivmod__" variable nil (reparse-symbol indented_block_body) [14029 14094]))                  
+                :type "class")
+                nil [7669 14095]))          
+    :file "local.py"
+    :pointmax 14095
+    :fsize 14094
+    :lastmodtime '(22543 48370 0 0)
+    :unmatched-syntax '((COLON 13508 . 13509) (EXPONENT 13504 . 13506) (NAME 13479 . 13487) (MULT 13500 . 13501) (COLON 11657 . 11658) (EXPONENT 11653 . 11655) (NAME 11628 . 11636) (MULT 11649 . 11650))
+    )
+   (semanticdb-table "wsgi.py"
+    :file "wsgi.py"
+    :fsize 37745
+    :lastmodtime '(22543 48370 0 0)
+    )
+   (semanticdb-table "_compat.py"
+    :file "_compat.py"
+    :fsize 6184
+    :lastmodtime '(22543 48370 0 0)
+    )
+   (semanticdb-table "datastructures.py"
+    :file "datastructures.py"
+    :fsize 86337
+    :lastmodtime '(22543 48370 0 0)
+    )
+   (semanticdb-table "exceptions.py"
+    :file "exceptions.py"
+    :fsize 17799
+    :lastmodtime '(22543 48370 0 0)
+    )
+   (semanticdb-table "routing.py"
+    :file "routing.py"
+    :fsize 62417
+    :lastmodtime '(22543 48370 0 0)
+    )
+   (semanticdb-table "wrappers.py"
+    :file "wrappers.py"
+    :fsize 76379
+    :lastmodtime '(22543 48370 0 0)
+    )
+   (semanticdb-table "utils.py"
+    :file "utils.py"
+    :fsize 22826
+    :lastmodtime '(22543 48370 0 0)
+    )
+   )
+  :file "!usr!local!lib!python2.7!dist-packages!werkzeug!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

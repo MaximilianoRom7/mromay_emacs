@@ -1,0 +1,13 @@
+;;; emacsql-psql-autoloads.el --- automatically extracted autoloads
+;;
+;;; Code:
+
+
+(provide 'emacsql-psql-autoloads)
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; no-update-autoloads: t
+;; coding: utf-8
+;; End:
+;;; emacsql-psql-autoloads.el ends here

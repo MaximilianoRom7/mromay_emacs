@@ -1,0 +1,128 @@
+ps aux | grep python | grep odoo | kill-them
+ps aux | grep python | grep odoo 
+git status
+git remote -v
+git clone ssh://skyline@192.168.69.6:/opt/odoo/addons/callcenter_conduct .
+git clone ssh://skyline@192.168.69.6:/opt/odoo/addons/callcenter_conduct
+mv callcenter_conduct/.git/ .
+rm -r callcenter_conduct/
+ls
+ls .git/
+git remote -v
+git add . --all
+git commit -a -m .
+git push origin master
+mkdir test
+cd test/
+git clone ssh://skyline@192.168.69.6:/opt/odoo/addons/callcenter_conduct
+ls callcenter_conduct/
+ls
+cd ..
+rm -rf test/
+ls
+cd /home/skyline/Development/odoo/mera/odoo-8.0-20170118/openerp/addons/callcenter_reports
+git status
+git remote -v
+cd ..
+find . | grep security
+nano ./board/security/ir.model.access.csv
+celery worker -A task
+celery worker -A tasks
+celery test.py  -A tasks
+celery worker -A test.py 
+celery worker -A test
+celery worker -A test
+celery worker -A test
+C_FORCE_ROOT=1 celery worker -A test
+C_FORCE_ROOT=1 celery worker -A test
+C_FORCE_ROOT=1 celery worker -A test
+C_FORCE_ROOT=1 celery worker -A test
+C_FORCE_ROOT=1 celery worker -A test
+C_FORCE_ROOT=1 celery test
+C_FORCE_ROOT=1 celery -A test
+C_FORCE_ROOT=1 celery -A test
+C_FORCE_ROOT=1 celery worker -A test
+pwd
+cd /home/skyline/Development/odoo
+cd odoo-repo/
+cp ../mera/odoo-8.0-20170118/odoo-server.conf .
+cd addons/
+mv auth_crypt/ incomplatible/
+ps aux | grep python
+ps aux | grep python | grep odoo-bin
+ps aux | grep python | grep odoo-bin
+ps aux | odoo-bin
+ps aux | grep odoo-bin
+ps aux | grep odoo-bin
+ps aux | tail -10
+ps aux | grep python
+ps aux | grep python | grep odoo-bin
+whoami
+ps aux | grep python | grep odoo-bin
+ps ax | grep python | grep odoo-bin
+ps ax | grep python | grep odoo-bin | tr -s ' ' | cut -d ' ' -f1
+ps ax | grep python | grep odoo-bin | tr -s ' '
+ps ax | grep python | grep odoo-bin | tr -s ' ' | cut -d ' ' -f1
+ps ax | grep python | grep odoo-bin | tr -s ' ' | cut -d ' ' -f2
+ps ax | grep python | grep odoo-bin | tr -s ' ' | cut -d ' ' -f2 | xargs -L1 kill -9
+ps ax | grep python | grep odoo-bin | tr -s ' ' | cut -d ' ' -f2 | xargs -L1 kill -9
+ps ax | grep python | grep odoo-bin | tr -s ' ' | cut -d ' ' -f2 | xargs -L1 kill -9
+git clone /opt/odoo/addons/hr_questionnaire
+git clone ssh://skyline@192.168.69.6:/opt/odoo/addons/hr_questionnaire
+ps aux | grep python | grep -E 'odoo\.py' | tr -s ' ' | cut -d ' ' -f2
+ps ax | grep python | grep -E 'odoo\.py' | tr -s ' ' | cut -d ' ' -f2
+ps ax | grep python | grep -E 'odoo\.py'
+ps ax | grep python
+ps ax | grep python
+ps ax | grep python | grep -E 'odoo\.py'
+ps ax | grep python | grep -E 'odoo\.py' | tr -s ' ' | cut -d ' ' -f2
+ps ax | grep python | grep -E 'odoo\.py' | tr -s ' ' | cut -d ' ' -f1
+ps aux | grep python | grep -E 'odoo\.py' | tr -s ' ' | cut -d ' ' -f1
+ps ax | grep python | grep -E 'odoo\.py' | tr -s ' ' | cut -d ' ' -f1
+ps ax | grep python | grep -E 'odoo\.py'
+ps ax | grep python | grep -E 'odoo\.py' | tr -s ' ' | cut -d ' ' -f1 | xargs -L1 kill -9
+lsof -i :8067
+lsof -i :8068
+ps -p 10941
+ps -pu 10941
+ps -px 10941
+ps -pa 10941
+ps -ap 10941
+ps -xp 10941
+ps -up 10941
+kill -9 10941
+cd hr_questionnaire/
+git status
+git status
+git status
+git add . --all
+git commit -a -m .
+ps ax | grep python | grep -E 'odoo\.py' | tr -s ' ' | cut -d ' ' -f1
+ps ax | grep python | grep -E 'odoo\.py'
+ps ax | grep python | grep -E 'odoo\.py' | tr -s ' ' | cut -d ' ' -f1
+ps ax | grep python | grep -E 'odoo\.py' | tr -s ' ' | cut -d ' ' -f2
+cd openerp/
+cd addons/
+find . | grep "\.po"
+find . | grep "\.po" | grep es_AR
+d hr_questionnaire/
+cd hr_questionnaire/
+git stash
+find . | grep data
+find . | grep dviews
+find . | grep views
+find . | grep openerp
+find . | grep view_list
+cd addons/
+ls l10n_ar_states.old/
+ls l10n_ar_states
+mv l10n_ar_states.old/ l10n_ar_states
+pwd
+find . | grep __openerp__
+find . | egrep __openerp__.py$
+find . | egrep __openerp__.py.old$
+find . | egrep __openerp__.py.
+find . | egrep __openerp__.py\.
+find . | egrep __openerp__.py
+git status
+git add . --all

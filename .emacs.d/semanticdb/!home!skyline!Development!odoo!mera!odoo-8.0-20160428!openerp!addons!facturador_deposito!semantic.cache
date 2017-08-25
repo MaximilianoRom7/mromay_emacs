@@ -1,0 +1,76 @@
+;; Object facturador_deposito/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "facturador_deposito/"
+  :tables (list 
+   (semanticdb-table "facturador.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("openerp" include nil nil [1 40])
+            ("random" include nil nil [41 67])
+            ("pdb" include nil nil [68 78])
+            ("warehouse_list" type
+               (:superclasses ("models.Model")
+                :members 
+                  ( ("_name" variable nil (reparse-symbol indented_block_body) [120 144])
+                    ("deposit_cost" variable nil (reparse-symbol indented_block_body) [154 199])
+                    ("product_id" variable nil (reparse-symbol indented_block_body) [204 262])
+                    ("facturador_deposito_id" variable nil (reparse-symbol indented_block_body) [309 386])
+                    ("show_details" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [409 413])
+                            ("cr" variable nil (reparse-symbol function_parameters) [415 417])
+                            ("uid" variable nil (reparse-symbol function_parameters) [419 422])
+                            ("ids" variable nil (reparse-symbol function_parameters) [424 427])
+                            ("context" variable nil (reparse-symbol function_parameters) [429 436]))                          )
+                        (reparse-symbol indented_block_body) [392 490]))                  
+                :type "class")
+                nil [80 490])
+            ("facturador" type
+               (:superclasses ("models.Model")
+                :members 
+                  ( ("_name" variable nil (reparse-symbol indented_block_body) [528 557])
+                    ("client_id" variable nil (reparse-symbol indented_block_body) [563 616])
+                    ("warehouse_list_ids" variable nil (reparse-symbol indented_block_body) [621 720])
+                    ("show_details" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [747 751])
+                            ("cr" variable nil (reparse-symbol function_parameters) [753 755])
+                            ("uid" variable nil (reparse-symbol function_parameters) [757 760])
+                            ("ids" variable nil (reparse-symbol function_parameters) [762 765])
+                            ("context" variable nil (reparse-symbol function_parameters) [767 774]))                          )
+                        (reparse-symbol indented_block_body) [730 822])
+                    ("onchange_client" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [855 859])
+                            ("cr" variable nil (reparse-symbol function_parameters) [861 863])
+                            ("uid" variable nil (reparse-symbol function_parameters) [865 868])
+                            ("ids" variable nil (reparse-symbol function_parameters) [870 873])
+                            ("client_id" variable nil (reparse-symbol function_parameters) [875 884])
+                            ("context" variable nil (reparse-symbol function_parameters) [886 893]))                          )
+                        (reparse-symbol indented_block_body) [835 1579]))                  
+                :type "class")
+                nil [492 1579]))          
+    :file "facturador.py"
+    :pointmax 752
+    :fsize 1593
+    :lastmodtime '(22569 65282 765973 584000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "__openerp__.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("" code nil nil [1183 1702]))          
+    :file "__openerp__.py"
+    :pointmax 1770
+    :fsize 1769
+    :lastmodtime '(22569 48955 253709 512000)
+    :unmatched-syntax '(($EOI 1770 . 1770))
+    )
+   )
+  :file "!home!skyline!Development!odoo!mera!odoo-8.0-20160428!openerp!addons!facturador_deposito!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

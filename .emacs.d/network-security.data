@@ -1,0 +1,4 @@
+(
+ (:id "sha1:6d4eb958390599243ba9f5035cb671fa8dd6a93a" :fingerprint "sha1:1b:c8:94:65:fb:2d:6d:34:d8:02:93:42:ee:d2:23:3f:98:3a:18:fe" :host "elpa.gnu.org:443" :conditions (:invalid))
+ (:id "sha1:85457c729378cc93c732b6a3941c8e4f9c2e60f3" :fingerprint "sha1:86:5f:fe:95:d9:f1:d4:4d:77:32:82:e4:89:ec:96:58:d4:6f:fd:7b" :host "marmalade-repo.org:443" :conditions (:unknown-ca :invalid))
+)
