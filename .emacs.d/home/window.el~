@@ -1,0 +1,6 @@
+
+(global-set-key (kbd "C-x 4") 'neotree-toggle)
+(global-set-key (kbd "M-1") 'windmove-left)
+(global-set-key (kbd "M-2") 'windmove-right)
+(global-set-key (kbd "C-c <left>") 'windsize-left)
+(global-set-key (kbd "C-c <right>") 'windsize-right)

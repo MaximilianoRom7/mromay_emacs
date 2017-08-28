@@ -1,0 +1,6 @@
+(define-prefix-command 'map-c-s)
+(global-set-key (kbd "C-s") 'map-c-s)
+
+(global-set-key (kbd "C-s s") 'helm-occur)
+(global-set-key (kbd "C-s d") 'helm-multi-swoop-all)
+
