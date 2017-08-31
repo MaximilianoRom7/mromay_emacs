@@ -6,6 +6,8 @@
 
 (dired-hide-unuseful-files)
 
+(setq-default truncate-lines t)
+
 ;; truncate buffer at 1025 lines
 ;; as this variable indicates
 ;; comint-buffer-maximum-size
