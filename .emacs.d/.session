@@ -1,6 +1,0 @@
-;;; Automatically generated on Wed Apr 26 18:18:39 2017
-;;; Invoked by root@skyline using 25.2.1
-(setq-default file-name-history '("~/.emacs.d/" "~/.emacs.d/purcell/" "~/.emacs.d/home/base.el" "~/.emacs.d/purcell/init.el" "~/.emacs.d/home/prefix_C-s.el" "~/.bashrc" "~/.emacs.d/home/custom.el" "~/.emacs.d/elpa/magit-20170425.638/magit-commit.el" "~/.emacs.d/elpa/magit-20170425.638/magit-diff.el" "~/.emacs.d/home/prefix_C-x.el" "~/.emacs.d/home/disabled.el" "~/.emacs.d/home/.gitignore" "/home/skyline/Development/odoo/planet/odoo/odoo.py" "~/.emacs" "~/.emacs.d/init.el" "~/.emacs.d/elpa/magit-20170425.638/magit-autoloads.el" "~/.emacs.d/elpa/git-commit-20170314.1414/git-commit-autoloads.el" "~/.emacs.d/elpa/with-editor-20170417.1458/with-editor-autoloads.el" "~/.emacs.d/elpa/magit-popup-20170420.544/magit-popup-autoloads.el" "/home/skyline/Development/versions/repos/odoo10/lib/python2.7/site-packages/odoo/odoo/start.sh" "/home/skyline/Development/versions/repos/odoo10/lib/python2.7/site-packages/odoo/odoo/start_odoo.sh" "/home/skyline/Development/versions/repos/odoo10/lib/python2.7/site-packages/odoo/odoo/odoo-server.conf"))
-(setq-default counsel-git-grep-cmd-history '("git --no-pager grep --full-name -n --no-color -i -e '%s'"))
-(setq-default extended-command-history '("kill-emacs" "eval-buffer" "rgrep"))
-(setq-default occur-collect-regexp-history '("\\1"))
