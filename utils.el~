@@ -1,6 +1,0 @@
-
-
-(defun filter-string(str)
-  (delq nil (mapcar #'(lambda(p) (if (string-match str p) p)) load-path)))
-
-

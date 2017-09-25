@@ -1,0 +1,42 @@
+
+
+
+mié ago 30 12:13:44 ART 2017
+
+* Agregar tag al addon account_payment_group y dejar una nota en la tarea explicando como hacer un checkout
+  http://fusion.com.ar/web#id=1105&view_type=form&model=project.issue&action=574&active_id=10&menu_id=310
+
+
+
+jue ago 17 10:47:19 ART 2017
+
+* boton de update de la afip no funciona ya hay una tarea
+
+
+
+jue ago 10 12:54:24 ART 2017
+
+* la columna de cantidad a pagar desaparece cuando se valida el pago
+* el campo "amount" se vuelve negativo
+
+
+
+mié ago  9 12:43:26 ART 2017
+
+(confirmar si es el account_payment_group)
+
+* quitar dos columns si no hay multidivisal, importe a pagar, residual financial amount
+* validacion contidad a pagar debe ser menor o igual a residual amount
+* cuando agregas un pago debe ponerse la sumatoria del valor que se puso en "cantidad
+  a pagar"
+* traer en "cantidad a pagar" por defecto el "residual amount"
+
+
+
+mar may 18 12:00:00 ART 2017
+
+* trabajar con el tema de pagos de odoo 10
+* agregar filtros en el addon de campos de reporte como me comento helena
+  ademas hacer que la busqueda del campo aparezca al final
+
+
