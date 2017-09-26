@@ -85,16 +85,6 @@ uses buffer-put-content but first erases the buffer"
       (set 'n (1+ n)))
     newLines))
 
-(defun buffer-unblock-block(buffer-name function args)
-  "disable buffer read only if it is and executes the function
-after execution makes buffer read only"
-  (get-buffer-create buffer-name)
-  (with-current-buffer buffer-name
-    (if buffer-read-only (toggle-read-only))
-    (apply function args)
-    (if buffer-read-only nil (toggle-read-only))
-    ))
-
 (defun window-dedicated-toggle()
   "when current window is dedicated to its buffer
 then is not, and when is not, it is"

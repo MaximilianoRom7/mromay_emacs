@@ -7,5 +7,8 @@
  realgud-safe-mode            nil
  PDB_SKIP                     nil)
 
-(global-undo-tree-mode t)
+(if (fboundp 'global-undo-tree-mode)
+    (global-undo-tree-mode t)
+  ;; else
+  (wmessage "ERROR: FUNCTION NOT EXITST global-undo-tree-mode"))
 

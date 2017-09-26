@@ -1,4 +1,9 @@
 
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+	("marmalade" . "https://marmalade-repo.org/packages/")
+	("melpa" . "https://melpa.org/packages/")))
+
 
 (setq global-packages-dirs
       '("~/.emacs.d/elpa-25.2"))
@@ -17,6 +22,9 @@
    ))
 
 (create-load-packages)
+
+(load "~/.emacs.d/home/buffers.el")
+(load "~/.emacs.d/home/autoinstall.el")
 
 ;; TODO UNDERSTAND EJC-SQL
 (require 'ejc-sql)
@@ -53,11 +61,6 @@
 (set-default 'truncate-lines t)
 
 (global-auto-revert-mode t)
-
-(setq package-archives
-      '(("gnu" . "https://elpa.gnu.org/packages/")
-	("marmalade" . "https://marmalade-repo.org/packages/")
-	("melpa" . "https://melpa.org/packages/")))
 
 (defun mydired-sort ()
   "Sort dired listings with directories first."
