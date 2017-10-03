@@ -1,16 +1,17 @@
 (provide 'm-custom)
 
-(defun dired-hide-unuseful-files()
-  (interactive)
-  (require 'dired-x)
-  (setq-default dired-omit-files-p t)
-  (setq dired-omit-files "\\.pyc$"))
+(require 'dired-x)
 
+(setq dired-omit-files "\\.pyc$")
 (setq shell-command-switch "-ic")
 
-(dired-hide-unuseful-files)
-
+(setq-default dired-omit-files-p t)
 (setq-default truncate-lines t)
+(setq-default message-log-max nil)
+
+(global-auto-revert-mode t)
+
+(add-hook 'diff-mode-hook (lambda (&rest rest) (interactive) (setq truncate-lines t)))
 
 ;; truncate buffer at 1025 lines
 ;; as this variable indicates
@@ -29,9 +30,6 @@
  '(magit-diff-removed ((((type tty)) (:foreground "red"))))
  '(magit-diff-removed-highlight ((((type tty)) (:foreground "IndianRed"))))
  '(magit-section-highlight ((((type tty)) nil))))
-
-
-(setq-default message-log-max nil)
 
 (ignore-errors
   (kill-buffer "*Messages*"))

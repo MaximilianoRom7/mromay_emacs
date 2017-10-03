@@ -42,25 +42,14 @@
    recentf
    windsize))
 
+(package-require
+ '(files))
+
 (setq lib-root "~/.emacs.d/home/")
 
-(load (concat lib-root "utils.el"))
-
-(defun files-load-all-el(path)
-  (let ((files (filter-not-string "base.el" (list-files-ext path ".el$"))))
-    (cl-loop for file in files do
-	     (let ((full (concat path file)))
-	       (wmessage (concat "Loading file: " full))
-	       (load full)
-	       ))))
+;; (load (concat lib-root "utils.el"))
 
 (files-load-all-el lib-root)
-
-(add-hook 'diff-mode-hook (lambda (&rest rest) (interactive) (setq truncate-lines t)))
-
-(set-default 'truncate-lines t)
-
-(global-auto-revert-mode t)
 
 (defun mydired-sort ()
   "Sort dired listings with directories first."
