@@ -1,3 +1,4 @@
+(provide 'm-files)
 (require 'm-utils)
 
 (defun files-load-all-el(path)

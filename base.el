@@ -28,7 +28,7 @@
 (load "~/.emacs.d/home/buffers.el")
 (load "~/.emacs.d/home/autoinstall.el")
 
-(package-install-require
+(packages-install-require
  '(cl-lib
    ejc-sql
    helm
@@ -42,10 +42,11 @@
    recentf
    windsize))
 
-(package-require
- '(files))
 
 (setq lib-root "~/.emacs.d/home/")
+
+(packages-load
+ (list (concat lib-root "files.el")))
 
 ;; (load (concat lib-root "utils.el"))
 
