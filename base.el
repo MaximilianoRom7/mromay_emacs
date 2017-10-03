@@ -24,38 +24,29 @@
 
 (create-load-packages)
 
+(load "~/.emacs.d/home/list.el")
 (load "~/.emacs.d/home/buffers.el")
 (load "~/.emacs.d/home/autoinstall.el")
 
-;; TODO UNDERSTAND EJC-SQL
-(require 'ejc-sql)
-(require 'package)
-(require 'helm)
-(require 'helm-regexp)
-(require 'magit)
-(require 'realgud)
-(require 'recentf)
-(require 'neotree)
-(require 'windsize)
-(require 'helm-swoop)
+(package-install-require
+ '(cl-lib
+   ejc-sql
+   helm
+   helm-regexp
+   helm-swoop
+   helm-swoop
+   magit
+   neotree
+   package
+   realgud
+   recentf
+   windsize))
 
 (setq lib-root "~/.emacs.d/home/")
 
 (load (concat lib-root "utils.el"))
 
-(defun list-files(dir)
-  (subseq (directory-files dir) 2))
-
-(defun list-files-ext(dir ext)
-  (filter-string ext (list-files dir)))
-
-(defun list-files-full(dir)
-  (mapcar (lambda(file) (concat dir file)) (list-files dir)))
-
-(defun list-files-full-ext(dir ext)
-  (filter-string ext (list-files-full dir)))
-
-(defun load-all-el-files(path)
+(defun files-load-all-el(path)
   (let ((files (filter-not-string "base.el" (list-files-ext path ".el$"))))
     (cl-loop for file in files do
 	     (let ((full (concat path file)))
@@ -63,7 +54,7 @@
 	       (load full)
 	       ))))
 
-(load-all-el-files lib-root)
+(files-load-all-el lib-root)
 
 (add-hook 'diff-mode-hook (lambda (&rest rest) (interactive) (setq truncate-lines t)))
 

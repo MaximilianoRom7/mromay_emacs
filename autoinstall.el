@@ -1,19 +1,27 @@
 (provide 'm-autoinstall)
+(require 'm-buffers)
 
-(defun package-autoinstall(package-list)
+(wmessage "autoinstall")
+
+(defun package-installed-loop(package-list func-if &optional func-else)
   (dolist (package package-list)
     (if (package-installed-p package)
-	(wmessage (concat "Package: " (symbol-name package) " installed"))
-      (ignore-errors
-	(package-install package)))))
+	(funcall func-if package)
+      (if func-else
+	  (funcall func-else package)))))
 
-(package-autoinstall
- '(cl-lib
-   ejc-sql
-   helm
-   magit
-   realgud
-   recentf
-   neotree
-   windsize
-   helm-swoop))
+(defun package-install(package-list)
+  (package-installed-loop
+   package-list
+   (lambda(package)
+      (ignore-errors
+	(package-install package))
+      (wmessage (concat "Package: " (symbol-name package) " installed")))))
+
+(defun package-require(package-list)
+  (dolist (package package-list)
+    (require package)))
+
+(defun package-install-require(package-list)
+  (package-install package-list)
+  (package-require package-list))
