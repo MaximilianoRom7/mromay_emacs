@@ -1,3 +1,4 @@
+(provide 'm-base)
 
 (setq package-archives
       '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -28,6 +29,7 @@
 
 ;; TODO UNDERSTAND EJC-SQL
 (require 'ejc-sql)
+(require 'package)
 (require 'helm)
 (require 'helm-regexp)
 (require 'magit)

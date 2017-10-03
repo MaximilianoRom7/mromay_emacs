@@ -1,3 +1,4 @@
+(provide 'm-python)
 
 (defun py:paths()
   (shell-command-to-string

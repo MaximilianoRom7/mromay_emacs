@@ -1,8 +1,12 @@
+(provide 'm-custom)
+
 (defun dired-hide-unuseful-files()
   (interactive)
   (require 'dired-x)
   (setq-default dired-omit-files-p t)
   (setq dired-omit-files "\\.pyc$"))
+
+(setq shell-command-switch "-ic")
 
 (dired-hide-unuseful-files)
 

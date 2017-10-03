@@ -1,4 +1,4 @@
-
+(provide 'm-buffers)
 
 (defun buffer-unblock-block(buffer-name function args)
   "disable buffer read only if it is and executes the function

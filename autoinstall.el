@@ -1,3 +1,5 @@
+(provide 'm-autoinstall)
+
 (defun package-autoinstall(package-list)
   (dolist (package package-list)
     (if (package-installed-p package)

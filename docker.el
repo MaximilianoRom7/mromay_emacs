@@ -1,3 +1,4 @@
+(provide 'm-docker)
 
 (defun docker-open-dired()
   (interactive)

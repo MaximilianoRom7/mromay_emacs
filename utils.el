@@ -1,3 +1,4 @@
+(provide 'm-utils)
 
 (defun string-split-concat(chars split1 &optional split2)
   (let ((split2 (if split2 split2 ", ")))

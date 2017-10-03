@@ -1,3 +1,4 @@
+import re
 import os
 import sys
 
@@ -15,14 +16,25 @@ for key in sys.argv:
 path = arg.get('--path')
 config = arg.get('--config')
 config_path = '/root/.emacs.d/home/odoo-server.conf'
+        
+env_path = "/lib/python.../site-packages/"
 
 if path and os.path.isdir(path):
         os.chdir(path)
-	sys.path = [path + os.sep + 'openerp'] + sys.path
-	sys.path = [path + os.sep + 'odoo'] + sys.path
-	sys.path = [path + os.sep + 'openerp/tools'] + sys.path
-	sys.path = [path + os.sep + 'odoo/tools'] + sys.path
-	sys.path = [path] + sys.path
+        for p in [path + os.sep + 'openerp',
+                  path + os.sep + 'odoo',
+                  path + os.sep + 'openerp/tools',
+                  path + os.sep + 'odoo/tools',
+                  path]:
+                if p not in sys.path:
+	                sys.path = [p] + sys.path
+        # TODO
+        # if re.search(env_path, path):
+        #         env = re.search(".*(?=" + env_path + ")", path).group()
+        #         if os.path.isdir(env):
+        #                 os.system('/bin/bash  --rcfile ' + env + '/bin/activate')
+        #
+        
 	try:
 		i = sys.argv.index('--path')
 		sys.argv.pop(i)

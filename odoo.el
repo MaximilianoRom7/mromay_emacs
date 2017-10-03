@@ -1,3 +1,5 @@
+(provide 'm-odoo)
+
 (defun message-wait(msg &optional wait)
   (message msg)
   (setq wait (or wait 1))
@@ -128,7 +130,7 @@
 
 (setq
  pkgs '("/lib/python2.7/site-packages")
- odoo-root '("/home/skyline/Development")
- odoo-paths-cache-file "/root/.emacs.d/home/odoopaths")
+ odoo-root '("~/odoo")
+ odoo-paths-cache-file "~/.emacs.d/home/odoopaths")
 
 (global-set-key (kbd "C-c o") (local:wrapp 'local:odoo-kill-start '(t)))
