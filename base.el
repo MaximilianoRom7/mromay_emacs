@@ -39,24 +39,31 @@
 (require 'windsize)
 (require 'helm-swoop)
 
-(load "~/.emacs.d/home/vars.el")
-(load "~/.emacs.d/home/utils.el")
-(load "~/.emacs.d/home/window.el")
-(load "~/.emacs.d/home/debug.el")
-(load "~/.emacs.d/home/notes.el")
-(load "~/.emacs.d/home/odoo.el")
-(load "~/.emacs.d/home/sql.el")
-(load "~/.emacs.d/home/python.el")
-(load "~/.emacs.d/home/python_mod.el")
-(load "~/.emacs.d/home/custom.el")
-(load "~/.emacs.d/home/custom.el")
-(load "~/.emacs.d/home/prefix_C-c.el")
-(load "~/.emacs.d/home/prefix_C-f.el")
-(load "~/.emacs.d/home/prefix_C-b.el")
-(load "~/.emacs.d/home/prefix_C-x.el")
-(load "~/.emacs.d/home/prefix_C-s.el")
-(load "~/.emacs.d/home/docker.el")
+(setq lib-root "~/.emacs.d/home/")
 
+(load (concat lib-root "utils.el"))
+
+(defun list-files(dir)
+  (subseq (directory-files dir) 2))
+
+(defun list-files-ext(dir ext)
+  (filter-string ext (list-files dir)))
+
+(defun list-files-full(dir)
+  (mapcar (lambda(file) (concat dir file)) (list-files dir)))
+
+(defun list-files-full-ext(dir ext)
+  (filter-string ext (list-files-full dir)))
+
+(defun load-all-el-files(path)
+  (let ((files (filter-not-string "base.el" (list-files-ext path ".el$"))))
+    (cl-loop for file in files do
+	     (let ((full (concat path file)))
+	       (wmessage (concat "Loading file: " full))
+	       (load full)
+	       ))))
+
+(load-all-el-files lib-root)
 
 (add-hook 'diff-mode-hook (lambda (&rest rest) (interactive) (setq truncate-lines t)))
 

@@ -18,6 +18,10 @@ White space here is any of: space, tab, emacs newline (line feed, ASCII 10)."
   "from a list of strings return a list with the ones that contain the str"
   (delq nil (mapcar #'(lambda(p) (if (string-match str p) p)) list)))
 
+(defun filter-not-string(str list)
+  "from a list of strings return a list with the ones that DO NOT contain the str"
+  (delq nil (mapcar #'(lambda(p) (if (string-match str p) nil p)) list)))
+
 (defun local:wrapp(func &rest args)
   "this function retuns a lambda that calls the original func"
   (interactive)
