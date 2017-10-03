@@ -7,8 +7,7 @@ after execution makes buffer read only"
   (with-current-buffer buffer-name
     (if buffer-read-only (toggle-read-only))
     (apply function args)
-    (if buffer-read-only nil (toggle-read-only))
-    ))
+    (if buffer-read-only nil (toggle-read-only))))
 
 (defun loop-lines(lines func)
   (cl-loop for line in (split-string lines "\n") do
@@ -18,8 +17,7 @@ after execution makes buffer read only"
   (let ((margin (or margin "")))
     (loop-lines lines
 		(lambda(line)
-		  (insert (concat "\n" margin line)))))
-  (insert "\n"))
+		  (insert (concat "\n" margin line))))))
 
 (defun wmessage(message &optional margin)
   (let ((margin (or margin "MESSAGE: ")))

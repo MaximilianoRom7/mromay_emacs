@@ -16,11 +16,14 @@
    (lambda(package)
       (ignore-errors
 	(package-install package))
-      (wmessage (concat "Package: " (symbol-name package) " installed")))))
+      (wmessage (concat (symbol-name package) " installed") "PACKAGE: ")))
+  (wmessage "" ""))
 
 (defun package-require(package-list)
   (dolist (package package-list)
-    (require package)))
+    (require package)
+    (wmessage (symbol-name package) "REQUIRE: "))
+  (wmessage "" ""))
 
 (defun package-install-require(package-list)
   (package-install package-list)
