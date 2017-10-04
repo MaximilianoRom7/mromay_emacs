@@ -1,3 +1,42 @@
+(defun mydired-sort ()
+  "Sort dired listings with directories first."
+  (save-excursion
+    (let (buffer-read-only)
+      (forward-line 2)
+      (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+    (set-buffer-modified-p nil)))
+
+(defadvice dired-readin
+  (after dired-after-updating-hook first () activate)
+  "Sort dired listings with directories first before adding marks."
+  (mydired-sort))
+
+(defun toggle-env-pdb-skip ()
+  (interactive)
+  (setq _LEVEL (read-from-minibuffer "PDB_LOCK level ?: "))
+  (shell-command-to-string (concat "echo " _LEVEL " > /root/.pdb_lock"))
+  (message (shell-command-to-string "cat /root/.pdb_lock")))
+
+(defun create-load-packages()
+  "add to list load-path all the packages from elpa-25"
+  (interactive)
+  (let (load-path-copy)
+    (cl-loop
+     for path in global-packages-dirs do
+     (if (file-exists-p path)
+	 (let* ((command (concat "ls -d " path "/*/"))
+		(packages-dirs (shell-command-to-string command)))
+	   (mapcar #'(lambda(dir)
+		       (if (not (string= dir ""))
+			   (if (file-exists-p dir)
+			       (if (not (memq dir load-path-copy))
+				   (add-to-list 'load-path-copy dir)))))
+		   (split-string packages-dirs "\n")))))
+    load-path-copy))
+
+(defun filter-files(paths)
+  (remove-if-not #'file-exists-p paths))
+
 (defun string-split-concat(chars split1 &optional split2)
   (let ((split2 (if split2 split2 ", ")))
     (mapconcat 'identity (mapcar 'string-trim (split-string chars split1)) split2)))
