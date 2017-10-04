@@ -57,12 +57,14 @@ after execution makes buffer read only"
       (substring-no-properties (buffer-string)))))
 
 (defun file-contents(path)
+  "Given an absolute file path returns its content as a string"
   (with-temp-buffer
     (insert-file-contents path)
     (buffer-content)))
 
-(defun read-file(path &optional buffer-name)
+(defun file-contents-print(path &optional buffer-name)
   (let ((buffer-name (or buffer-name buffer-default-output)))
     (with-temp-buffer
-      (insert-file-contents path)
-      (lines-insert-margin (buffer-string) "FILE CONTENT: " buffer-name))))
+      (let ((content (file-contents path))
+	    (margin (concat path ": ")))
+	(lines-insert-margin content margin buffer-name)))))
