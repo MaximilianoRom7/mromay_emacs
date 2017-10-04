@@ -1,11 +1,37 @@
-(defun py:paths()
+(defun python-debug(command)
+  "command should be like
+(python-debug \"pdb2 /home/skyline/Development/odoo_10/start.py\")"
+    (let ((func 'realgud:run-debugger)
+	  (args (list "pdb" 'pdb-query-cmdline
+		      'pdb-parse-cmd-args
+		      'realgud:pdb-minibuffer-history
+		      command t))
+	  no-error)
+      (ignore-errors
+	(apply func args)
+	(set 'no-error t))
+      (unless no-error
+	;; the error happend most of the time
+	;; becouse the buffer didn't close
+	;; so executing the same function again
+	;; closes the buffer and starts the
+	;; debugger normally
+	(message (format "%s" err))
+	(sit-for 2)
+	(apply func args))
+      ))
+
+(defun python-paths()
   (shell-command-to-string
    (concat "python2 -c \"import sys; "
 	   "from pprint import pprint; "
 	   "[pprint(p) for p in sys.path]\"")))
 
-(defun say:py:paths()
-  (message (py:paths)))
+(defun say:python-paths()
+  (message (python-paths)))
+
+(defun odoo-run-debug(folder)
+  )
 
 (defun pdb-odoo-debug
   (realgud:pdb "pdb2 /home/skyline/Development/odoo/mera/odoo-8.0-20160428/odoo.py --config=/home/skyline/Development/odoo/mera/odoo-8.0-20160428/odoo-server-debug.conf" t))

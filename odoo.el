@@ -1,30 +1,11 @@
-(defun message-wait(msg &optional wait)
-  (message msg)
-  (setq wait (or wait 1))
-  (sit-for wait))
+(import 'buffers)
+(import 'python)
 
-(defun python-debug(command)
-  "command should be like
-(python-debug \"pdb2 /home/skyline/Development/odoo_10/start.py\")"
-    (let ((func 'realgud:run-debugger)
-	  (args (list "pdb" 'pdb-query-cmdline
-		      'pdb-parse-cmd-args
-		      'realgud:pdb-minibuffer-history
-		      command t))
-	  no-error)
-      (ignore-errors
-	(apply func args)
-	(set 'no-error t))
-      (unless no-error
-	;; the error happend most of the time
-	;; becouse the buffer didn't close
-	;; so executing the same function again
-	;; closes the buffer and starts the
-	;; debugger normally
-	(message (format "%s" err))
-	(sit-for 2)
-	(apply func args))
-      ))
+
+(defun message-wait(msg &optional wait)
+  (wmessage msg)
+  (let ((wait (or wait 1)))
+    (sit-for wait)))
 
 (defun buffer-switch-create(buffer)
   (switch-to-buffer (get-buffer-create (car buffer))))
