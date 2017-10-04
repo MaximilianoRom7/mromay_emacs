@@ -1,6 +1,3 @@
-(provide 'm-autoinstall)
-(require 'm-buffers)
-
 (wmessage "autoinstall")
 
 (defun packages-installed-loop(package-list func-if &optional func-else)

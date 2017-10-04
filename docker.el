@@ -1,5 +1,3 @@
-(provide 'm-docker)
-
 (defun docker-open-dired()
   (interactive)
   (let* ((container_names

@@ -1,5 +1,3 @@
-(provide 'm-utils)
-
 (defun string-split-concat(chars split1 &optional split2)
   (let ((split2 (if split2 split2 ", ")))
     (mapconcat 'identity (mapcar 'string-trim (split-string chars split1)) split2)))

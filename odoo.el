@@ -1,5 +1,3 @@
-(provide 'm-odoo)
-
 (defun message-wait(msg &optional wait)
   (message msg)
   (setq wait (or wait 1))

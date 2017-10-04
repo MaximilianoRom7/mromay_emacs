@@ -1,5 +1,3 @@
-(provide 'm-python)
-
 (defun py:paths()
   (shell-command-to-string
    (concat "python2 -c \"import sys; "

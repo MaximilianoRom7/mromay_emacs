@@ -1,5 +1,3 @@
-(provide 'm-window)
-
 ;;
 ;; window related key bindings
 ;;

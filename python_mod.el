@@ -1,5 +1,3 @@
-(provide 'm-python_mod)
-
 ;; TODO
 ;; this variable is important to use venv-workon function
 ;; from the package virtualenvwrapper

@@ -1,5 +1,3 @@
-(provide 'm-sql)
-
 ;; 
 ;; query related utilities
 ;; 

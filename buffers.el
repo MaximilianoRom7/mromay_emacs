@@ -1,5 +1,3 @@
-(provide 'm-buffers)
-
 (setq buffer-default-output "*Messages*")
 
 (defun read-only(active)
@@ -27,12 +25,12 @@ after execution makes buffer read only"
   (cl-loop for line in (split-string lines "\n") do
 	   (funcall func line)))
 
-(defun lines-insert-margin(lines &optional margin buffer-name)
+(defun lines-insert-margin(lines &optional margin name-buffer)
   (let ((margin (or margin ""))
-	(buffer-name (or buffer-name buffer-default-output)))
+	(name-buffer (or name-buffer buffer-default-output)))
     (loop-lines lines
 		(lambda(line)
-		  (with-current-buffer buffer-name
+		  (with-current-buffer name-buffer
 		    (insert-unblock (concat "\n" margin line)))))))
 
 (defun insert-unblock(content)
@@ -44,9 +42,9 @@ after execution makes buffer read only"
 (defun wmessage(message &optional margin)
   (let ((margin (or margin "MESSAGE: ")))
     (buffer-unblock
-     buffer-default-output
      (lambda()
-       (lines-insert-margin message margin)))))
+       (lines-insert-margin message margin))
+     buffer-default-output)))
 
 ;; (buffer-string)
 ;; (buffer-substring (point-min) (point-max))

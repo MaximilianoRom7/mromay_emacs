@@ -1,4 +1,5 @@
-(provide 'm-base)
+(load "~/.emacs.d/home/import.el")
+
 
 (setq package-archives
       '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -41,9 +42,6 @@
    realgud
    recentf
    windsize))
-
-
-(setq lib-root "~/.emacs.d/home/")
 
 (packages-load
  (list (concat lib-root "files.el")))

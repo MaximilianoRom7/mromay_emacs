@@ -1,5 +1,3 @@
-(provide 'm-custom)
-
 (require 'dired-x)
 
 (setq dired-omit-files "\\.pyc$")
