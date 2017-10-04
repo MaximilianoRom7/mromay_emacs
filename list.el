@@ -1,4 +1,4 @@
-
+(require 'cl)
 
 (defun list-files(dir)
   (subseq (directory-files dir) 2))

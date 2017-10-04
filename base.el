@@ -2,6 +2,7 @@
 
 (import 'utils)
 (import 'autoinstall)
+(import-all)
 
 (setq load-path (append load-path (create-load-packages)))
 (setq load-path (filter-files load-path))
