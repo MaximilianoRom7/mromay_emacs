@@ -25,3 +25,8 @@ after execution makes buffer read only"
      "*Messages*"
      (lambda()
        (lines-insert-margin message margin)))))
+
+(defun buffer-content(&optional buffer)
+  (let ((buffer (or buffer (current-buffer))))
+    (with-current-buffer buffer
+      (substring-no-properties (buffer-substring (point-min) (point-max))))))
