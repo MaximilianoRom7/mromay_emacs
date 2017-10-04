@@ -56,6 +56,11 @@ after execution makes buffer read only"
     (with-current-buffer buffer
       (substring-no-properties (buffer-string)))))
 
+(defun file-contents(path)
+  (with-temp-buffer
+    (insert-file-contents path)
+    (buffer-content)))
+
 (defun read-file(path &optional buffer-name)
   (let ((buffer-name (or buffer-name buffer-default-output)))
     (with-temp-buffer
