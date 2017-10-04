@@ -1,9 +1,10 @@
 (load "~/.emacs.d/home/import.el")
 
+(import 'utils)
+(import 'autoinstall)
+
 (setq load-path (append load-path (create-load-packages)))
 (setq load-path (filter-files load-path))
-
-(import 'utils)
 
 (packages-install-require
  '(cl-lib

@@ -1,3 +1,5 @@
+(import 'packages)
+
 (defun mydired-sort ()
   "Sort dired listings with directories first."
   (save-excursion
@@ -35,7 +37,7 @@
     load-path-copy))
 
 (defun filter-files(paths)
-  (remove-if-not #'file-exists-p paths))
+  (cl-remove-if-not #'file-exists-p paths))
 
 (defun string-split-concat(chars split1 &optional split2)
   (let ((split2 (if split2 split2 ", ")))
