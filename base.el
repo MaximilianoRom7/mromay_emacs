@@ -40,5 +40,5 @@
 (add-to-list 'load-path "/root/.emacs.d/purcell/lisp")
 (add-to-list 'load-path "/root/.emacs.d/purcell/site-lisp")
 
-(ignore-errors
-  (find-file "/home/skyline/Development/notes"))
+
+(run-at-time 2 nil (lambda() (find-file "~/mromay_emacs/sched/notes")))
