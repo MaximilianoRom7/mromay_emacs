@@ -12,14 +12,16 @@
 (defun buffer-unblock(func &optional buffer-name args)
   "disable buffer read only if it is and executes the function
 after execution makes buffer read only"
-  (let ((args (or args nil)))
+  (let ((args (or args nil))
+	(buffer-name (or buffer-name (current-buffer-name))))
     (get-buffer-create buffer-name)
     (with-current-buffer buffer-name
-      (read-only nil)
-      (if args
-	  (apply func args)
-	(funcall func))
-      (read-only t))))
+      (let ((read buffer-read-only))
+	(read-only nil)
+	(if args
+	    (apply func args)
+	  (funcall func))
+	(read-only read)))))
 
 (defun loop-lines(lines func)
   (cl-loop for line in (split-string lines "\n") do
@@ -31,10 +33,10 @@ after execution makes buffer read only"
     (loop-lines lines
 		(lambda(line)
 		  (with-current-buffer buffer-name
-		    (insert (concat "\n" margin line)))))))
+		    (insert-unblock (concat "\n" margin line)))))))
 
 (defun insert-unblock(content)
-  (buffer-unblock ))
+  (buffer-unblock (lambda() (insert content))))
 
 (defun current-buffer-name()
   (buffer-name (current-buffer)))
@@ -58,4 +60,4 @@ after execution makes buffer read only"
   (let ((buffer-name (or buffer-name buffer-default-output)))
     (with-temp-buffer
       (insert-file-contents path)
-      (lines-insert-margin (buffer-string) "FILE CONTENT: " buffer-default-output))))
+      (lines-insert-margin (buffer-string) "FILE CONTENT: " buffer-name))))
