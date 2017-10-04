@@ -1,32 +1,61 @@
 (provide 'm-buffers)
 
-(defun buffer-unblock-block(buffer-name function &optional args)
+(setq buffer-default-output "*Messages*")
+
+(defun read-only(active)
+  (if active
+      (if (not buffer-read-only)
+	  (toggle-read-only))
+    (if buffer-read-only
+	(toggle-read-only))))
+
+(defun buffer-unblock(func &optional buffer-name args)
   "disable buffer read only if it is and executes the function
 after execution makes buffer read only"
-  (get-buffer-create buffer-name)
-  (with-current-buffer buffer-name
-    (if buffer-read-only (toggle-read-only))
-    (apply function args)
-    (if buffer-read-only nil (toggle-read-only))))
+  (let ((args (or args nil)))
+    (get-buffer-create buffer-name)
+    (with-current-buffer buffer-name
+      (read-only nil)
+      (if args
+	  (apply func args)
+	(funcall func))
+      (read-only t))))
 
 (defun loop-lines(lines func)
   (cl-loop for line in (split-string lines "\n") do
 	   (funcall func line)))
 
-(defun lines-insert-margin(lines &optional margin)
-  (let ((margin (or margin "")))
+(defun lines-insert-margin(lines &optional margin buffer-name)
+  (let ((margin (or margin ""))
+	(buffer-name (or buffer-name buffer-default-output)))
     (loop-lines lines
 		(lambda(line)
-		  (insert (concat "\n" margin line))))))
+		  (with-current-buffer buffer-name
+		    (insert (concat "\n" margin line)))))))
+
+(defun insert-unblock(content)
+  (buffer-unblock ))
+
+(defun current-buffer-name()
+  (buffer-name (current-buffer)))
 
 (defun wmessage(message &optional margin)
   (let ((margin (or margin "MESSAGE: ")))
-    (buffer-unblock-block
-     "*Messages*"
+    (buffer-unblock
+     buffer-default-output
      (lambda()
        (lines-insert-margin message margin)))))
+
+;; (buffer-string)
+;; (buffer-substring (point-min) (point-max))
 
 (defun buffer-content(&optional buffer)
   (let ((buffer (or buffer (current-buffer))))
     (with-current-buffer buffer
-      (substring-no-properties (buffer-substring (point-min) (point-max))))))
+      (substring-no-properties (buffer-string)))))
+
+(defun read-file(path &optional buffer-name)
+  (let ((buffer-name (or buffer-name buffer-default-output)))
+    (with-temp-buffer
+      (insert-file-contents path)
+      (lines-insert-margin (buffer-string) "FILE CONTENT: " buffer-default-output))))
