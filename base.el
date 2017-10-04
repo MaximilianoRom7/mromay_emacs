@@ -1,29 +1,29 @@
 (load "~/.emacs.d/home/import.el")
 
 
-(setq package-archives
-      '(("gnu" . "https://elpa.gnu.org/packages/")
-	("marmalade" . "https://marmalade-repo.org/packages/")
-	("melpa" . "https://melpa.org/packages/")))
-
-
-(setq global-packages-dirs
-      '("~/.emacs.d/elpa-25.2"))
-
 (defun create-load-packages()
   "add to list load-path all the packages from elpa-25"
   (interactive)
-  (cl-loop
-   for path in global-packages-dirs do
-   (setq packages-dirs (shell-command-to-string (concat "ls -d " path "/*/")))
-   (mapcar #'(lambda(dir)
-	       (if (not (string= dir ""))
-		   (if (not (memq dir load-path))
-		       (add-to-list 'load-path dir))))
-	   (split-string packages-dirs "\n"))
-   ))
+  (let (load-path-copy)
+    (cl-loop
+     for path in global-packages-dirs do
+     (if (file-exists-p path)
+	 (let* ((command (concat "ls -d " path "/*/"))
+		(packages-dirs (shell-command-to-string command)))
+	   (mapcar #'(lambda(dir)
+		       (if (not (string= dir ""))
+			   (if (file-exists-p dir)
+			       (if (not (memq dir load-path-copy))
+				   (add-to-list 'load-path-copy dir)))))
+		   (split-string packages-dirs "\n")))))
+    load-path-copy))
 
-(create-load-packages)
+
+(defun filter-files(paths)
+  (remove-if-not #'file-exists-p paths))
+
+(setq load-path (append load-path (create-load-packages)))
+(setq load-path (filter-files load-path))
 
 (load "~/.emacs.d/home/list.el")
 (load "~/.emacs.d/home/buffers.el")
