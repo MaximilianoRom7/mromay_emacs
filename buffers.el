@@ -66,3 +66,29 @@ after execution makes buffer read only"
       (let ((content (file-contents path))
 	    (margin (concat path ": ")))
 	(lines-insert-margin content margin buffer-name)))))
+
+(defun buffers-map-name()
+  (let* ((buffers (buffer-list))
+	 buffers-name)
+    (cl-loop for buffer in buffers do
+	     (setq buffers-name
+		   (cons (list buffer (buffer-name buffer)) buffers-name)))
+    buffers-name))
+
+(defun buffers-ilike(str)
+  (let* ((buffers-name (buffers-map-name)))
+    (cl-remove-if-not
+     (lambda(buffer-name)
+       (if (string-match-p str (nth 1 buffer-name))
+	   t
+	 nil))
+     buffers-name)
+    ))
+
+(defun buffers-name(buffer-name)
+  (mapcar (lambda(buffer-name) (nth 1 buffer-name)) buffer-name))
+
+(defun buffers-kill-ilike(str)
+  (let* ((buffers-ilike (buffers-ilike str))
+	 (buffer-name (buffers-name buffers-ilike)))
+    (mapc 'kill-buffer buffer-name)))
