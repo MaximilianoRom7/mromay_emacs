@@ -40,6 +40,19 @@ after execution makes buffer read only"
   (buffer-name (current-buffer)))
 
 (defun wmessage(message &optional margin)
+  "Writes a message with a left margin
+for example calling:
+
+(wmessage \"Hi !\")
+
+MESSAGE: Hi !
+
+or
+
+(wmessage \"Hi !\" \"MAX: \")
+
+MAX: Hi !
+"
   (let ((margin (or margin "MESSAGE: ")))
     (buffer-unblock
      (lambda()
