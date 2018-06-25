@@ -3,6 +3,8 @@
 
 
 (defun message-wait(msg &optional wait)
+  "Writes a message into the '*Message*' buffer
+and waits n seconds optional"
   (wmessage msg)
   (let ((wait (or wait 1)))
     (sit-for wait)))
