@@ -39,8 +39,13 @@
  '(neo-file-link-face ((t (:foreground "yellow")))))
 
 (if (window-system)
-    (custom-set-variables
-       '(custom-enabled-themes (quote (manoj-dark))))
+    ;; if spacemacs do
+    (if (fboundp 'spacemacs/get-last-version)
+        (custom-set-variables
+         '(custom-enabled-themes (quote (spacemacs-dark))))
+        ;; if not spacemacs do
+        (custom-set-variables
+         '(custom-enabled-themes (quote (manoj-dark)))))
   ;; else
   (custom-set-variables
    '(package-selected-packages
