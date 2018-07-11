@@ -6,3 +6,5 @@
 
 (setq global-packages-dirs
       '("~/.emacs.d/elpa-25.2"))
+
+(provide 'packages)

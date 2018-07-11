@@ -23,5 +23,5 @@
 	     (import file)
 	     )))
 
-(import 'buffers)
-(import 'list)
+(require 'buffers)
+(require 'list)

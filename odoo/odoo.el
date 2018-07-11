@@ -1,5 +1,6 @@
-(import 'buffers)
-(import 'python)
+(require 'utils)
+(require 'buffers)
+(require 'python)
 
 
 (defun message-wait(msg &optional wait)
@@ -181,3 +182,5 @@ and waits n seconds optional"
 (global-set-key (kbd "C-x r") 'template-odoo-form)
 (global-set-key (kbd "C-x e")'template-odoo-action)
 (global-set-key (kbd "C-c o") (local:wrapp 'local:odoo-kill-start '(t)))
+
+(provide 'odoo)

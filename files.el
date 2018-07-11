@@ -1,5 +1,5 @@
-(import 'utils)
-(import 'buffers)
+(require 'utils)
+(require 'buffers)
 
 (defun directory-or-parent(dir &optional recursive_level)
   "Given a path if it is a directory returns it
@@ -22,3 +22,5 @@ if the parent directory is not a real directory return nil"
 	       (wmessage (concat "Loading file: " full))
 	       (load full)
 	       ))))
+
+(provide 'files)

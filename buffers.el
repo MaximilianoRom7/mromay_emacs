@@ -105,3 +105,5 @@ MAX: Hi !
   (let* ((buffers-ilike (buffers-ilike str))
 	 (buffer-name (buffers-name buffers-ilike)))
     (mapc 'kill-buffer buffer-name)))
+
+(provide 'buffers)

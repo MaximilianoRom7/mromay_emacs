@@ -1,4 +1,4 @@
-(import 'buffers)
+(require 'buffers)
 (wmessage "autoinstall")
 
 (defun packages-installed-loop(package-list func-if &optional func-else)
@@ -32,3 +32,5 @@
 (defun packages-install-require(package-list)
   (packages-install package-list)
   (packages-require package-list))
+
+(provide 'autoinstall)

@@ -12,3 +12,4 @@
 (defun list-files-full-ext(dir ext)
   (filter-string ext (list-files-full dir)))
 
+(provide 'list)

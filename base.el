@@ -2,9 +2,9 @@
 
 (load "~/.emacs.d/home/import.el")
 
-(import 'utils)
-(import 'autoinstall)
-(import-all)
+(require 'utils)
+(require 'autoinstall)
+;; (import-all)
 
 (setq load-path (append load-path (create-load-packages)))
 (setq load-path (filter-files load-path))
@@ -60,7 +60,7 @@
 
 (setq realgud-safe-mode nil)
 
-(import 'buffers)
+(require 'buffers)
 
 (defun start-odoo()
   (interactive)
