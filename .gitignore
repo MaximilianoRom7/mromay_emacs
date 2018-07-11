@@ -2,4 +2,5 @@
 *\.
 *\#
 *.pyc
+disabled.el
 sched

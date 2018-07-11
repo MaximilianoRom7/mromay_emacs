@@ -139,3 +139,5 @@
 ;; (message (local:concat-shell-run "ls /root" "grep a"))
 ;; (message (local:concat-shell "a" "b"))
 ;; (message (test-args "a" "b" "c"))
+
+(provide 'python-mod)

@@ -1,3 +1,4 @@
+(require 'python-mod)
 (require 'utils)
 (require 'buffers)
 (require 'python)

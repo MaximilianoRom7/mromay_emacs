@@ -1,9 +1,11 @@
+(require 'utils)
+(require 'realgud)
+(require 'buffers)
+(require 'autoinstall)
+
 (package-initialize)
 
-(load "~/.emacs.d/home/import.el")
-
-(require 'utils)
-(require 'autoinstall)
+;; (load "~/.emacs.d/home/import.el")
 ;; (import-all)
 
 (setq load-path (append load-path (create-load-packages)))
@@ -55,12 +57,8 @@
 
 (run-at-time 2 nil (lambda() (find-file "~/mromay_emacs/sched/notes")))
 
-
-(require 'realgud)
-
 (setq realgud-safe-mode nil)
 
-(require 'buffers)
 
 (defun start-odoo()
   (interactive)

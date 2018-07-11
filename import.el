@@ -1,3 +1,5 @@
+(require 'buffers)
+(require 'list)
 
 (setq global-imports (and (boundp 'global-imports) global-imports))
 (setq lib-root "~/.emacs.d/home/")
@@ -22,6 +24,3 @@
 	     (wmessage file "IMPORTING: ")
 	     (import file)
 	     )))
-
-(require 'buffers)
-(require 'list)
