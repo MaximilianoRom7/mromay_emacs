@@ -104,3 +104,4 @@
 	    "--config " working_dir "/odoo-server.conf") t)
    ))
 
+(provide 'python)

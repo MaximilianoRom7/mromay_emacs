@@ -59,3 +59,5 @@
   (condition-case err
       (windmove-down)
     (error (windmove-left))))
+
+(provide 'window)

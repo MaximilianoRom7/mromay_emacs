@@ -1,6 +1,6 @@
-;; 
+;;
 ;; query related utilities
-;; 
+;;
 
 
 (defun buffer-plain-text()
@@ -107,7 +107,6 @@ then is not, and when is not, it is"
     ;; (set 'results (mapcar 'sql-run-query paragraphs))
     (buffer-unblock-block buffer-name 'buffer-refresh-content (list results buffer-name sql-paragraph-sep))
     ;; (buffer-refresh-content results buffer-name sql-paragraph-sep)
-    
     ))
 
 (defun sql-command-run-query()
@@ -117,5 +116,4 @@ then is not, and when is not, it is"
   (shell-command-to-string
    (concat (sql-command-run-query) "\"" query "\"")))
 
-
-
+(provide 'sql)

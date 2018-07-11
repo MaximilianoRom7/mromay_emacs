@@ -12,3 +12,4 @@
   ;; else
   (wmessage "ERROR: FUNCTION NOT EXITST global-undo-tree-mode"))
 
+(provide 'vars)
