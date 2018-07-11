@@ -49,11 +49,13 @@
   (setq command "git add . --all")
   (if (y-or-n-p (concat command "\n" "Are You Sure ?: "))
       (progn
-	(shell-command-to-string command)
-	(message "OK"))
+	      (shell-command-to-string command)
+	      (message "OK"))
     (message "Canceled")
     ))
 
 (global-set-key
  (kbd "C-b a")
  'local--magit-add)
+
+(provide 'prefix-C-b)

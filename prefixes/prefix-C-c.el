@@ -1,7 +1,3 @@
-
-
-
-
 ;; just for testing
 
 (global-set-key (kbd "C-c v") 'buffer-split-paragraph)
@@ -9,4 +5,4 @@
 (global-set-key (kbd "C-c e") 'ejc-sql-mode)
 (global-set-key (kbd "C-c n") 'window-dedicated-toggle)
 
-
+(provide 'prefix-C-c)

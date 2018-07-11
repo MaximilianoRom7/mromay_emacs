@@ -3,3 +3,4 @@
 
 (global-set-key (kbd "C-f f") 'find-function)
 
+(provide 'prefix-C-f)
