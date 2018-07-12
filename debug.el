@@ -1,3 +1,5 @@
+(require 'realgud)
+
 (global-set-key (kbd "C-c d") 'edebug-defun)
 
 (defun local:end-of-buffer(&rest rest)

@@ -1,3 +1,5 @@
+(require 'realgud)
+
 (defun python-debug(command)
   "command should be like
 (python-debug \"pdb2 /home/skyline/Development/odoo_10/start.py\")"

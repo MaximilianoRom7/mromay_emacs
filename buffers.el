@@ -1,3 +1,5 @@
+(require 'core-spacemacs-buffer)
+
 (setq buffer-default-output "*Messages*")
 
 (defun read-only(active)
@@ -61,6 +63,39 @@ MAX: Hi !
 
 ;; (buffer-string)
 ;; (buffer-substring (point-min) (point-max))
+
+(defun spacemacs-buffer-trailing-whitespace(&optional show)
+  (with-current-buffer (get-buffer spacemacs-buffer-name)
+    (setq show-trailing-whitespace show)))
+
+(setq clean-whitespace
+      #'(lambda ()
+          (with-current-buffer (get-buffer spacemacs-buffer-name)
+            (setq show-trailing-whitespace nil))
+          (message "jajja")))
+
+(defun spacemacs-buffer-hooks()
+  (add-function
+   :after
+   #'(lambda ()
+       (progn
+         ;; (message "jojo")
+         (sit-for 1)))
+   #'spacemacs-buffer//startup-hook))
+
+(defun --spacemacs-buffer-hooks()
+  (add-function
+   :after
+   (progn
+     (message "jojo")
+     (sit-for 1)
+     (run-at-time
+      2 nil
+      #'(lambda ()
+          (with-current-buffer (get-buffer spacemacs-buffer-name)
+            (setq show-trailing-whitespace nil))
+          (message "jajja"))))
+   #'spacemacs-buffer//startup-hook))
 
 (defun buffer-content(&optional buffer)
   (let ((buffer (or buffer (current-buffer))))

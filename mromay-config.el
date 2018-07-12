@@ -1,5 +1,8 @@
 (require 'dired-x)
 
+(set-face-attribute 'default nil :family "Source Code Pro")
+(set-face-attribute 'default nil :height 100)
+
 (setq linum-format "%d   ")
 (setq dired-omit-files "\\.pyc$")
 (setq shell-command-switch "-ic")
@@ -52,5 +55,7 @@
      (quote
       (magit helm-swoop swoop windsize recentf-ext web-mode realgud neotree)))))
 
-(ignore-errors
-  (kill-buffer "*Messages*"))
+;;(ignore-errors
+;;  (kill-buffer "*Messages*"))
+
+(provide 'mromay-config)

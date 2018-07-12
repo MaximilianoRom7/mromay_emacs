@@ -1,3 +1,5 @@
+(require 'realgud)
+
 ;; TODO
 ;; this variable is important to use venv-workon function
 ;; from the package virtualenvwrapper
