@@ -1,5 +1,6 @@
 (require 'mromay-utils)
 (require 'mromay-buffers)
+(require 'mromay-shell)
 (require 'mromay-python)
 (require 'mromay-python-mod)
 
@@ -253,9 +254,17 @@ if you want to use ~/odoo then you do
 
 (defun start-odoo()
   (interactive)
+  ;; ask confirmation to kill the buffer is the pdb process is still running
   (buffers-kill-ilike "pdb")
-  (shell-command-to-string "ps aux | grep python | grep odoo | grep -v 'grep ' | while read l; do if [[ '$l' =~ '^[0-9]+$' ]]; then pid=$l; else pid=$(echo $l | process-pid); fi; kill -9 $pid; done")
-  (sit-for 1)
+  ;; TODO change this kill process and kill only the pdb process knowing the pid
+  (shell-concat-run
+   "ps aux"
+   "grep python"
+   "grep odoo"
+   "grep -v 'grep'"
+   "tr -s ' '"
+   "cut -d ' ' -f 2"
+   "xargs -L 1 kill -9")
   (let* ((path-env      (concat-home     "/odoo/c10/1"))
          (path-odoo     (concat path-env "/odoo_10"))
          (path-python   (concat path-env "/bin/python "))

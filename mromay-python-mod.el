@@ -1,4 +1,5 @@
 (require 'realgud)
+(provide 'mromay-shell)
 
 ;; TODO
 ;; this variable is important to use venv-workon function
@@ -11,9 +12,6 @@
 	          (concat short-dir-1 "/versions/repos/odoo.2")
 	          (concat short-dir-1 "/versions/repos/odoo.3")
 	          ))
-
-;; (message (nth 0 (filter-string "/repos/odoo10" venv-location)))
-;; (sit-for 1)
 
 (if (not (boundp 'local:virtualenv-choosen))
     (setq local:virtualenv-choosen nil))
@@ -40,37 +38,9 @@
   (funcall pycommand local:virtualenv-choosen)
   )
 
-(defun local:concat-shell-run(&rest pipes)
-  ;; (message (type-of pipes))
-  (local:concat-shell pipes)
-  ;; (setq command (local:concat-shell pipes))
-  ;; (message (concat "Command: " command))
-  (if command
-      (progn
-	      ;; (message command)
-	      ;; (sit-for 2)
-	      (shell-command-to-string command))
-    ""))
-
-(defun local:concat-shell(&rest pipes)
-  ;; (message (type-of pipes))
-  (if (> (length pipes) 0)
-      (progn
-	      (setq command (nth 0 (nth 0 pipes)))
-	      ;; (setq command (concat command (nth 1 (nth 0 pipes))))
-	      ;; (message (concat "Pipe: " command ))
-	      ;; (sit-for 3)
-	      (cl-loop for pipe in (cdr (nth 0 pipes)) do
-		             (setq command (concat command " | " pipe))
-		             ;; (sit-for 0.3)
-		             )
-	      command)
-    ;; else return ""
-    ""))
-
 (defun local:venv-kill-odoo()
   (message
-   (local:concat-shell-run 
+   (shell-concat-run
     "lsof -i"
     "grep python"
     "grep LISTEN"
@@ -84,10 +54,7 @@
 (setq local:odoo-version 8)
 
 (defun local:venv-run-odoo-config(&optional virtualenv)
-  ;; (message (concat "Virtualenv to run odoo is: " virtualenv))
-  ;; (sit-for 0.3)
   (setq odoo-path (concat virtualenv odoo-relpath))
-  ;; (message odoo-path)
   (if (eq local:odoo-version 8)
       (progn
 	      (setq command
@@ -105,26 +72,19 @@
     (realgud:pdb
      (concat "python2 -m pdb " odoo-path "/odoo.py "
 	           "--config " odoo-path "/odoo-server.conf")))
-  ;; (sit-for 0.3)
   )
 
 (defun local:venv-run-odoo()
   (local:venv-kill-odoo)
   (local:venv-run 'local:venv-run-odoo-config))
 
-;; (local:venv-run-odoo-config)
-;; (local:venv-run-odoo)
-
-;; test
 (defun local:concat-shell-run-test()
-  (message (concat "Command 1: " (local:concat-shell-run )))
+  (message (concat "Command 1: " (shell-concat-run )))
   (sit-for 0.3)
-  (message (concat "Command 2: "  (local:concat-shell-run "a" "v")))
+  (message (concat "Command 2: "  (shell-concat-run "a" "v")))
   (sit-for 0.3)
-  (message (concat "Command 3: "  (local:concat-shell-run "ls /root" "grep a")))
+  (message (concat "Command 3: "  (shell-concat-run "ls /root" "grep a")))
   (sit-for 0.3))
-
-;; (local:concat-shell-run-test)
 
 (defun append-cons(&rest linees)
   (setq out (nth 0 lines))
@@ -136,10 +96,5 @@
 
 (defun test-args(&rest lines)
   (append-cons lines))
-
-;; (message (local:concat-shell-run "a" "b" "c" "d"))
-;; (message (local:concat-shell-run "ls /root" "grep a"))
-;; (message (local:concat-shell "a" "b"))
-;; (message (test-args "a" "b" "c"))
 
 (provide 'mromay-python-mod)
