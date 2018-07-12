@@ -16,8 +16,8 @@
 (defun toggle-env-pdb-skip ()
   (interactive)
   (setq _LEVEL (read-from-minibuffer "PDB_LOCK level ?: "))
-  (shell-command-to-string (concat "echo " _LEVEL " > /root/.pdb_lock"))
-  (message (shell-command-to-string "cat /root/.pdb_lock")))
+  (shell-run (concat "echo " _LEVEL " > /root/.pdb_lock"))
+  (message (shell-run "cat /root/.pdb_lock")))
 
 (defun create-load-packages()
   "add to list load-path all the packages from elpa-25"
@@ -27,7 +27,7 @@
      for path in global-packages-dirs do
      (if (file-exists-p path)
 	 (let* ((command (concat "ls -d " path "/*/"))
-		(packages-dirs (shell-command-to-string command)))
+		(packages-dirs (shell-run command)))
 	   (mapcar #'(lambda(dir)
 		       (if (not (string= dir ""))
 			   (if (file-exists-p dir)

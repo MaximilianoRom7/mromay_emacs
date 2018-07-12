@@ -4,7 +4,7 @@
 (global-set-key (kbd "C-b") 'map-c-b)
 
 (defun local--magit-current-branch()
-  (setq output (shell-command-to-string "git branch | egrep \"* \" | cut -d ' ' -f2"))
+  (setq output (shell-run "git branch | egrep \"* \" | cut -d ' ' -f2"))
   (substring output 0 (string-match "\n" output)))
 
 (defun local--magit-update-branch()
@@ -49,7 +49,7 @@
   (setq command "git add . --all")
   (if (y-or-n-p (concat command "\n" "Are You Sure ?: "))
       (progn
-	      (shell-command-to-string command)
+	      (shell-run command)
 	      (message "OK"))
     (message "Canceled")
     ))

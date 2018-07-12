@@ -12,4 +12,4 @@ of names that can be used in the completing read."
              (directory-files proper-dir nil "^[^.]"))))
 
 
-;; (nth 0 (split-string (shell-command-to-string "readlink ~/.virtualenvs/odoo_repos_10") "\n"))
+;; (nth 0 (split-string (shell-run "readlink ~/.virtualenvs/odoo_repos_10") "\n"))

@@ -5,6 +5,20 @@
 (require 'mromay-python-mod)
 
 
+(setq realgud-safe-mode nil)
+
+(defun concat-home(path)
+  "concats the user home directory with the path
+for example:
+if you want to use ~/odoo then you do
+(concat-home '/odoo')"
+  (concat (directory-file-name user-home-directory) path))
+
+(setq
+ pkgs '("/lib/python2.7/site-packages")
+ odoo-root '("~")
+ odoo-paths-cache-file (concat-home "/mromay_emacs/mromay-odoo/mromay-odoo-paths"))
+
 (defun message-wait(msg &optional wait)
   "Writes a message into the '*Message*' buffer
 and waits n seconds optional"
@@ -97,7 +111,7 @@ appling the function to the buffer itself"
   (m:process-kill "pdb"))
 
 (defun kill-process-odoo()
-  (local:concat-shell-run
+  (shell-concat-run
    "lsof -i"
    "grep python"
    "grep LISTEN"
@@ -135,10 +149,10 @@ appling the function to the buffer itself"
 
 (defun odoo-find-paths-cache(path cache)
   (if cache
-      (shell-command-to-string (concat "cat " cache))
+      (shell-run (concat "cat " cache))
     (let ((paths (odoo-find-paths path)))
       (if paths
-	        (local:concat-shell-run
+	        (shell-concat-run
 	         (concat "echo " paths)
 	         (concat "tee -a " cache))
 	      ))))
@@ -162,18 +176,13 @@ appling the function to the buffer itself"
    odoo-root))
 
 (defun odoo-find-paths(path save)
-  (local:concat-shell-run
+  (shell-concat-run
    (concat "find " path " -maxdepth 6 -type d -name addons")
    "xargs -L 1 dirname"
    (concat "while read l; "
 	         "do ls $l/sql_db.py 1> /dev/null 2> /dev/null && echo $l; "
 	         "done")
    "xargs -L 1 dirname"))
-
-(setq
- pkgs '("/lib/python2.7/site-packages")
- odoo-root '("~")
- odoo-paths-cache-file "~/mromay_emacs/mromay-odoo/mromay-odoo-paths")
 
 (defun template-odoo-tree()
   (interactive)
@@ -238,20 +247,6 @@ appling the function to the buffer itself"
     "        </record>\n"
     )))
 
-(global-set-key (kbd "C-x t") 'template-odoo-tree)
-(global-set-key (kbd "C-x r") 'template-odoo-form)
-(global-set-key (kbd "C-x e")'template-odoo-action)
-;; (global-set-key (kbd "C-c o") (local:wrapp 'local:odoo-kill-start '(t)))
-
-(setq realgud-safe-mode nil)
-
-(defun concat-home(path)
-  "concats the user home directory with the path
-for example:
-if you want to use ~/odoo then you do
-(concat-home '/odoo')"
-  (concat (directory-file-name user-home-directory) path))
-
 (defun start-odoo()
   (interactive)
   ;; ask confirmation to kill the buffer is the pdb process is still running
@@ -272,6 +267,10 @@ if you want to use ~/odoo then you do
                            "--config=" path-odoo "/odoo-server.conf ")))
     (realgud:pdb command nil)))
 
-(global-set-key (kbd "C-c o") 'start-odoo)
+(global-set-key (kbd "C-x t") 'template-odoo-tree)
+(global-set-key (kbd "C-x r") 'template-odoo-form)
+(global-set-key (kbd "C-x e")'template-odoo-action)
+(global-set-key (kbd "C-c o") (local:wrapp 'local:odoo-kill-start '(t)))
+;; (global-set-key (kbd "C-c o") 'start-odoo)
 
 (provide 'mromay-odoo)

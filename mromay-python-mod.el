@@ -78,14 +78,6 @@
   (local:venv-kill-odoo)
   (local:venv-run 'local:venv-run-odoo-config))
 
-(defun local:concat-shell-run-test()
-  (message (concat "Command 1: " (shell-concat-run )))
-  (sit-for 0.3)
-  (message (concat "Command 2: "  (shell-concat-run "a" "v")))
-  (sit-for 0.3)
-  (message (concat "Command 3: "  (shell-concat-run "ls /root" "grep a")))
-  (sit-for 0.3))
-
 (defun append-cons(&rest linees)
   (setq out (nth 0 lines))
   (cl-loop for l in (cdr lines) do
