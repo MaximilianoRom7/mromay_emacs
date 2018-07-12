@@ -14,31 +14,86 @@ and waits n seconds optional"
 (defun buffer-switch-create(buffer)
   (switch-to-buffer (get-buffer-create (car buffer))))
 
-(defun local:buffer-kill-noconfirm(buff)
-  "kill-buffer-without-confirmation"
+(defun m:buffer-kill(buffer)
+  "Same as kill-buffer"
+  (kill-buffer buffer))
+
+(defun m:buffer-kill-noconfirm(buffer)
+  "kill buffer without confirmation"
   (interactive)
-  ;; (message-wait buff) >> 42
-  (with-current-buffer buff
+  (with-current-buffer buffer
     (let ((buffer-modified-p nil))
       (kill-this-buffer))))
 
-(defun buffer-kill-confirm(buffers &optional confirm)
-  (if confirm
-      ;; ask confirmation
-      (mapc #'kill-buffer buffers)
-    ;; do not ask
-    (mapc #'local:buffer-kill-noconfirm buffers)))
+(defun m:buffer-kill-confirm(buffer &optional force)
+  "Kill a buffer and ask confirmation or force kill without confirmation"
+  (if force
+      ;; do not ask
+      (mapc #'m:buffer-kill-noconfirm buffer)
+    ;; ask confirmation
+    (mapc #'m:buffer-kill buffer)))
+
+(defun m:buffer-name-contains(buffer name)
+  (if (string-match name (buffer-name buffer))
+      buffer))
+
+(defun m:buffer-name-contains-(name)
+  "Returns a lambda function that wraps m:buffer-name-contains
+and replaces the name attribute for a constant
+that means returns a predicate that can be used as a filter
+where the name of the buffer is a constant"
+  (lambda(buffer)
+    (m:buffer-name-contains buffer name)))
+
+(defun m:buffers-kill(buffers)
+  "To a list of buffers applies m:buffer-kill"
+  (m:buffers-do buffers #'m:buffer-kill))
+
+(defun m:buffers-kill-noconfirm(buffers)
+  "To a list of buffers applies m:buffer-kill-noconfirm"
+  (m:buffers-do buffers #'m:buffer-kill-noconfirm))
+
+(defun m:buffers-kill-confirm(buffers)
+  "To a list of buffers applies m:buffer-kill-confirm"
+  (m:buffers-do buffers #'m:buffer-kill-confirm))
+
+(defun m:buffers-do(buffers func)
+  (mapc func buffers))
+
+(defun m:buffers-filter-name(buffers name)
+  (remove-if-not
+   (m:buffer-name-contains- name)
+   buffers))
+
+(defun m:buffers-filter-name-do(buffers name func)
+  (m:buffers-do (m:buffers-filter-name buffers name) func))
+
+(defun m:buffers-filter-name-kill(buffers name)
+  (m:buffers-filter-name-do buffers name #'m:buffer-kill))
+
+(defun m:buffers-list()
+  (buffer-list))
+
+(defun m:buffers-list-filter-name(name)
+  (m:buffers-filter-name (m:buffers-list) name))
 
 (defun buffer-by-name-do(name func)
+  "Deprecated: applies a function over the NAME of a buffer instead of
+appling the function to the buffer itself"
   (let ((buffers (filter-string name (mapcar #'buffer-name (buffer-list)))))
     (if buffers
-	(funcall func buffers))))
+	      (funcall func buffers))))
 
-(defun kill-process-pdb(&optional confirm)
-  "kill all the pdb buffers"
+(defun m:process-kill(process &optional confirm)
+
   (interactive)
   (buffer-by-name-do "pdb" (lambda(buffers)
-			     (buffer-kill-confirm buffers confirm))))
+			                       (buffer-kill-confirm buffers confirm)))
+  )
+
+(defun m:buffer-kill-pdb(&optional confirm)
+  "kill all the pdb buffers"
+  (m:process-kill "pdb"))
 
 (defun kill-process-odoo()
   (local:concat-shell-run
@@ -59,8 +114,8 @@ and waits n seconds optional"
   (interactive)
   (setq start_script (completing-read "Choose an odoo: " odoo-paths))
   (setq command (concat "python2 -m pdb /root/.emacs.d/home/odoo.py "
-			"--path " start_script " "
-			"--config=/root/.emacs.d/home/odoo-server.conf"))
+			                  "--path " start_script " "
+			                  "--config=/root/.emacs.d/home/odoo-server.conf"))
   ;; python2 -m pdb /root/.emacs.d/home/odoo.py --path /home/skyline/Development/enterprise/1 --config=/root/.emacs.d/home/odoo-server.conf
   ;; (message-wait command 10)
   (realgud:pdb command t))
@@ -79,10 +134,10 @@ and waits n seconds optional"
       (shell-command-to-string (concat "cat " cache))
     (let ((paths (odoo-find-paths path)))
       (if paths
-	  (local:concat-shell-run
-	   (concat "echo " paths)
-	   (concat "tee -a " cache))
-	))))
+	        (local:concat-shell-run
+	         (concat "echo " paths)
+	         (concat "tee -a " cache))
+	      ))))
 
 (defun filter-empty-string(strings)
   ;; given a list of strings
@@ -91,10 +146,10 @@ and waits n seconds optional"
 
 (defun foreach-line-apply(func lines)
   (filter-empty-string
-   (-flatten 
+   (-flatten
     (mapcar
      #'(lambda(path)
-	 (split-string (funcall func path) "\n"))
+	       (split-string (funcall func path) "\n"))
      lines))))
 
 (defun odoo-find-start-script(odoo-root)
@@ -107,8 +162,8 @@ and waits n seconds optional"
    (concat "find " path " -maxdepth 6 -type d -name addons")
    "xargs -L 1 dirname"
    (concat "while read l; "
-	   "do ls $l/sql_db.py 1> /dev/null 2> /dev/null && echo $l; "
-	   "done")
+	         "do ls $l/sql_db.py 1> /dev/null 2> /dev/null && echo $l; "
+	         "done")
    "xargs -L 1 dirname"))
 
 (setq
