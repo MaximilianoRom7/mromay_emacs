@@ -8,4 +8,4 @@
 (global-set-key (kbd "C-s d") 'helm-multi-swoop-all)
 (global-set-key (kbd "C-s o") 'docker-open-dired)
 
-(provide 'prefix-C-s)
+(provide 'mromay-prefix-c-s)

@@ -3,4 +3,4 @@
 
 (global-set-key (kbd "C-f f") 'find-function)
 
-(provide 'prefix-C-f)
+(provide 'mromay-prefix-c-f)

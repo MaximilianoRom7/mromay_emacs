@@ -58,4 +58,4 @@
  (kbd "C-b a")
  'local--magit-add)
 
-(provide 'prefix-C-b)
+(provide 'mromay-prefix-c-b)

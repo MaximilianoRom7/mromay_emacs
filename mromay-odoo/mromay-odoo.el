@@ -172,7 +172,7 @@ appling the function to the buffer itself"
 (setq
  pkgs '("/lib/python2.7/site-packages")
  odoo-root '("~")
- odoo-paths-cache-file "~/.emacs.d/home/odoopaths")
+ odoo-paths-cache-file "~/mromay_emacs/mromay-odoo/mromay-odoo-paths")
 
 (defun template-odoo-tree()
   (interactive)
@@ -242,4 +242,4 @@ appling the function to the buffer itself"
 (global-set-key (kbd "C-x e")'template-odoo-action)
 (global-set-key (kbd "C-c o") (local:wrapp 'local:odoo-kill-start '(t)))
 
-(provide 'odoo)
+(provide 'mromay-odoo)

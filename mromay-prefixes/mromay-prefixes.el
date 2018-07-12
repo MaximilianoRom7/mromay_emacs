@@ -3,10 +3,10 @@
 ;; variable name
 (setq anaconda-view-mode-map (make-keymap))
 
-(require 'prefix-C-b)
-(require 'prefix-C-c)
-(require 'prefix-C-f)
-(require 'prefix-C-s)
-(require 'prefix-C-x)
+(require 'mromay-prefix-c-b)
+(require 'mromay-prefix-c-c)
+(require 'mromay-prefix-c-f)
+(require 'mromay-prefix-c-s)
+(require 'mromay-prefix-c-x)
 
-(provide 'prefixes)
+(provide 'mromay-prefixes)

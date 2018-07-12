@@ -10,4 +10,4 @@
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
-(provide 'prefix-C-x)
+(provide 'mromay-prefix-c-x)

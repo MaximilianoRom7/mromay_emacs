@@ -5,4 +5,4 @@
 (global-set-key (kbd "C-c e") 'ejc-sql-mode)
 (global-set-key (kbd "C-c n") 'window-dedicated-toggle)
 
-(provide 'prefix-C-c)
+(provide 'mromay-prefix-c-c)
