@@ -1,7 +1,7 @@
-(require 'python-mod)
-(require 'utils)
-(require 'buffers)
-(require 'python)
+(require 'mromay-python-mod)
+(require 'mromay-utils)
+(require 'mromay-buffers)
+(require 'mromay-python)
 
 
 (defun message-wait(msg &optional wait)
@@ -104,6 +104,9 @@ appling the function to the buffer itself"
    "tr -s ' '"
    "cut -d ' ' -f2"
    "xargs -L 1 kill -9"))
+
+(defun kill-process-pdb()
+    (m:buffer-kill-pdb))
 
 (defun kill-odoo()
   (interactive)

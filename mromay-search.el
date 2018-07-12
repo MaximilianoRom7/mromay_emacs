@@ -8,4 +8,4 @@
   (let ((search-for (read-buffer "Search for ?  ")))
     (multi-occur-in-matching-buffers "" search-for)))
 
-(provide 'search)
+(provide 'mromay-search)

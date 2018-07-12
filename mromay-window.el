@@ -60,4 +60,4 @@
       (windmove-down)
     (error (windmove-left))))
 
-(provide 'window)
+(provide 'mromay-window)

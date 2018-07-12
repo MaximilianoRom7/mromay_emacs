@@ -1,5 +1,6 @@
-(require 'buffers)
-(require 'list)
+;; depricated
+(require 'mromay-buffers)
+(require 'mromay-list)
 
 (setq global-imports (and (boundp 'global-imports) global-imports))
 (setq lib-root "~/.emacs.d/home/")
@@ -24,3 +25,5 @@
 	     (wmessage file "IMPORTING: ")
 	     (import file)
 	     )))
+
+(provide 'mromay-import)

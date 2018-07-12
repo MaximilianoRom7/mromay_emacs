@@ -141,4 +141,4 @@ MAX: Hi !
 	 (buffer-name (buffers-name buffers-ilike)))
     (mapc 'kill-buffer buffer-name)))
 
-(provide 'buffers)
+(provide 'mromay-buffers)

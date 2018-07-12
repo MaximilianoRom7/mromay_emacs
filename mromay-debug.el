@@ -15,3 +15,4 @@
 
 (advice-add 'realgud:send-input :after 'local:end-of-buffer)
 
+(provide 'mromay-debug)

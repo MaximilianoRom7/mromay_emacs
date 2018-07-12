@@ -1,5 +1,5 @@
 (require 'helm)
-(require 'docker)
+(require 'mromay-docker)
 (define-prefix-command 'map-c-s)
 (global-set-key (kbd "C-s") 'map-c-s)
 

@@ -116,4 +116,4 @@ then is not, and when is not, it is"
   (shell-command-to-string
    (concat (sql-command-run-query) "\"" query "\"")))
 
-(provide 'sql)
+(provide 'mromay-sql)

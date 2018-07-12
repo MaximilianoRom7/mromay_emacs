@@ -142,4 +142,4 @@
 ;; (message (local:concat-shell "a" "b"))
 ;; (message (test-args "a" "b" "c"))
 
-(provide 'python-mod)
+(provide 'mromay-python-mod)

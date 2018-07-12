@@ -1,7 +1,7 @@
-(require 'utils)
 (require 'realgud)
-(require 'buffers)
-(require 'autoinstall)
+(require 'mromay-utils)
+(require 'mromay-buffers)
+(require 'mromay-autoinstall)
 
 (package-initialize)
 
@@ -69,3 +69,5 @@
   (realgud:pdb "/usr/bin/python /home/mromay/odoo_10_community/2/odoo_10/start_odoo.py --config=/home/mromay/odoo_10_community/2/odoo_10/odoo-server.conf " nil))
 
 (global-set-key (kbd "C-c o") 'start-odoo)
+
+(provide 'mromay)

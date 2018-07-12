@@ -6,4 +6,4 @@
 
 (global-set-key (kbd "C-c t") 'write-full-date)
 
-
+(provide 'mromay-notes)

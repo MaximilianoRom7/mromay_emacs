@@ -1,4 +1,4 @@
-(require 'packages)
+(require 'mromay-packages)
 
 (defun mydired-sort ()
   "Sort dired listings with directories first."
@@ -97,4 +97,4 @@ White space here is any of: space, tab, emacs newline (line feed, ASCII 10)."
 ;; testing
 ;; (local:keys-get-functions edebug-mode-map)
 
-(provide 'utils)
+(provide 'mromay-utils)

@@ -18,4 +18,4 @@
 	(dired container_folder)
       (message (concat "Directory " container_folder " does not exist.")))))
 
-(provide 'docker)
+(provide 'mromay-docker)

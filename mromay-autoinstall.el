@@ -1,4 +1,4 @@
-(require 'buffers)
+(require 'mromay-buffers)
 (wmessage "autoinstall")
 
 (defun packages-installed-loop(package-list func-if &optional func-else)
@@ -33,4 +33,4 @@
   (packages-install package-list)
   (packages-require package-list))
 
-(provide 'autoinstall)
+(provide 'mromay-autoinstall)
