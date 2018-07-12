@@ -1,7 +1,7 @@
-(require 'mromay-python-mod)
 (require 'mromay-utils)
 (require 'mromay-buffers)
 (require 'mromay-python)
+(require 'mromay-python-mod)
 
 
 (defun message-wait(msg &optional wait)
@@ -240,6 +240,29 @@ appling the function to the buffer itself"
 (global-set-key (kbd "C-x t") 'template-odoo-tree)
 (global-set-key (kbd "C-x r") 'template-odoo-form)
 (global-set-key (kbd "C-x e")'template-odoo-action)
-(global-set-key (kbd "C-c o") (local:wrapp 'local:odoo-kill-start '(t)))
+;; (global-set-key (kbd "C-c o") (local:wrapp 'local:odoo-kill-start '(t)))
+
+(setq realgud-safe-mode nil)
+
+(defun concat-home(path)
+  "concats the user home directory with the path
+for example:
+if you want to use ~/odoo then you do
+(concat-home '/odoo')"
+  (concat (directory-file-name user-home-directory) path))
+
+(defun start-odoo()
+  (interactive)
+  (buffers-kill-ilike "pdb")
+  (shell-command-to-string "ps aux | grep python | grep odoo | grep -v 'grep ' | while read l; do if [[ '$l' =~ '^[0-9]+$' ]]; then pid=$l; else pid=$(echo $l | process-pid); fi; kill -9 $pid; done")
+  (sit-for 1)
+  (let* ((path-env      (concat-home     "/odoo/c10/1"))
+         (path-odoo     (concat path-env "/odoo_10"))
+         (path-python   (concat path-env "/bin/python "))
+         (command  (concat path-python path-odoo "/start_odoo.py "
+                           "--config=" path-odoo "/odoo-server.conf ")))
+    (realgud:pdb command nil)))
+
+(global-set-key (kbd "C-c o") 'start-odoo)
 
 (provide 'mromay-odoo)

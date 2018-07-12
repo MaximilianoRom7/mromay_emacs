@@ -35,8 +35,8 @@
 (defun odoo-run-debug(folder)
   )
 
-(defun pdb-odoo-debug
-  (realgud:pdb "pdb2 /home/skyline/Development/odoo/mera/odoo-8.0-20160428/odoo.py --config=/home/skyline/Development/odoo/mera/odoo-8.0-20160428/odoo-server-debug.conf" t))
+(defun pdb-odoo-debug()
+    (realgud:pdb "pdb2 /home/skyline/Development/odoo/mera/odoo-8.0-20160428/odoo.py --config=/home/skyline/Development/odoo/mera/odoo-8.0-20160428/odoo-server-debug.conf" t))
 
 (global-set-key
  (kbd "C-x C-n")

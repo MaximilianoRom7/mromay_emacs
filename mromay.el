@@ -57,17 +57,4 @@
 
 (run-at-time 2 nil (lambda() (find-file "~/mromay_emacs/sched/notes")))
 
-(setq realgud-safe-mode nil)
-
-
-(defun start-odoo()
-  (interactive)
-  (buffers-kill-ilike "pdb")
-  (shell-command-to-string "ps aux | grep python | grep odoo | grep -v 'grep ' | while read l; do if [[ '$l' =~ '^[0-9]+$' ]]; then pid=$l; else pid=$(echo $l | process-pid); fi; kill -9 $pid; done")
-  (sit-for 1)
-  (setq default-directory "/home/mromay/odoo_10_community/2/odoo_10")
-  (realgud:pdb "/usr/bin/python /home/mromay/odoo_10_community/2/odoo_10/start_odoo.py --config=/home/mromay/odoo_10_community/2/odoo_10/odoo-server.conf " nil))
-
-(global-set-key (kbd "C-c o") 'start-odoo)
-
 (provide 'mromay)

@@ -7,10 +7,10 @@
 
 (setq venv-location
       (list "~/.virtualenvs/"
-	(concat short-dir-1 "/versions/repos/odoo.1")
-	(concat short-dir-1 "/versions/repos/odoo.2")
-	(concat short-dir-1 "/versions/repos/odoo.3")
-	))
+	          (concat short-dir-1 "/versions/repos/odoo.1")
+	          (concat short-dir-1 "/versions/repos/odoo.2")
+	          (concat short-dir-1 "/versions/repos/odoo.3")
+	          ))
 
 ;; (message (nth 0 (filter-string "/repos/odoo10" venv-location)))
 ;; (sit-for 1)
@@ -23,17 +23,17 @@
 (defun local:venv-run(pycommand)
   (if venv-location
       (progn
-	(if local:virtualenv-choosen
-	    (setq message (concat "Choose a Virtualenv: (" local:virtualenv-choosen ")"))
-	  (setq message "Choose a Virtualenv: "))
-	(setq local:venv-to-use (completing-read message venv-location))
-	(if (not local:venv-to-use)
-	    (if local:virtualenv-choosen
-		;; use the last choosen virtualenv
-		(setq local:venv-to-use t))
-	  ;; else one was choosen
-	  (setq local:virtualenv-choosen local:venv-to-use))
-	)
+	      (if local:virtualenv-choosen
+	          (setq message (concat "Choose a Virtualenv: (" local:virtualenv-choosen ")"))
+	        (setq message "Choose a Virtualenv: "))
+	      (setq local:venv-to-use (completing-read message venv-location))
+	      (if (not local:venv-to-use)
+	          (if local:virtualenv-choosen
+		            ;; use the last choosen virtualenv
+		            (setq local:venv-to-use t))
+	        ;; else one was choosen
+	        (setq local:virtualenv-choosen local:venv-to-use))
+	      )
     (message "There are no virtualenvs to use"))
   ;; test
   ;; (message (concat "Virtualenv Choosen was: " local:virtualenv-choosen))
@@ -47,24 +47,24 @@
   ;; (message (concat "Command: " command))
   (if command
       (progn
-	;; (message command)
-	;; (sit-for 2)
-	(shell-command-to-string command))
+	      ;; (message command)
+	      ;; (sit-for 2)
+	      (shell-command-to-string command))
     ""))
-  
+
 (defun local:concat-shell(&rest pipes)
   ;; (message (type-of pipes))
   (if (> (length pipes) 0)
       (progn
-	(setq command (nth 0 (nth 0 pipes)))
-	;; (setq command (concat command (nth 1 (nth 0 pipes))))
-	;; (message (concat "Pipe: " command ))
-	;; (sit-for 3)
-	(cl-loop for pipe in (cdr (nth 0 pipes)) do
-		 (setq command (concat command " | " pipe))
-		 ;; (sit-for 0.3)
-		 )
-	command)
+	      (setq command (nth 0 (nth 0 pipes)))
+	      ;; (setq command (concat command (nth 1 (nth 0 pipes))))
+	      ;; (message (concat "Pipe: " command ))
+	      ;; (sit-for 3)
+	      (cl-loop for pipe in (cdr (nth 0 pipes)) do
+		             (setq command (concat command " | " pipe))
+		             ;; (sit-for 0.3)
+		             )
+	      command)
     ;; else return ""
     ""))
 
@@ -90,21 +90,21 @@
   ;; (message odoo-path)
   (if (eq local:odoo-version 8)
       (progn
-	(setq command
-	      (concat "python2 -c \""
-		      "import odoo; "
-		      "import sys; "
-		      "sys.argv = ['', "
-		      "'--config', '" odoo-relpath "/odoo/odoo-server.conf', "
-		      "'--db-filter', 'odoo10']; "
-		      "odoo.cli.main()\""))
-	;; (message command)
-	;; (sit-for 20)
-	(realgud:pdb command t)
-	)
-  (realgud:pdb
-   (concat "python2 -m pdb " odoo-path "/odoo.py "
-	   "--config " odoo-path "/odoo-server.conf")))
+	      (setq command
+	            (concat "python2 -c \""
+		                  "import odoo; "
+		                  "import sys; "
+		                  "sys.argv = ['', "
+		                  "'--config', '" odoo-relpath "/odoo/odoo-server.conf', "
+		                  "'--db-filter', 'odoo10']; "
+		                  "odoo.cli.main()\""))
+	      ;; (message command)
+	      ;; (sit-for 20)
+	      (realgud:pdb command t)
+	      )
+    (realgud:pdb
+     (concat "python2 -m pdb " odoo-path "/odoo.py "
+	           "--config " odoo-path "/odoo-server.conf")))
   ;; (sit-for 0.3)
   )
 
@@ -129,9 +129,9 @@
 (defun append-cons(&rest linees)
   (setq out (nth 0 lines))
   (cl-loop for l in (cdr lines) do
-	   (setq out (concat out " " l))
-	   (message l)
-	   (sit-for 0.4))
+	         (setq out (concat out " " l))
+	         (message l)
+	         (sit-for 0.4))
   out)
 
 (defun test-args(&rest lines)
