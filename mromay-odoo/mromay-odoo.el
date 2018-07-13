@@ -92,7 +92,7 @@ and waits n seconds optional"
 
 (defun odoo-find-paths-cache(path &optional cache)
   (if (and (file-exists-p cache)
-           (setq cache-out (shell-run (concat "cat " cache))))
+           (m:boolean (setq cache-out (shell-run (concat "cat " cache)))))
       cache-out
     (let ((paths (odoo-find-paths path)))
       (if paths

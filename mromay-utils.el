@@ -110,4 +110,11 @@ retuns another list of not empty strings"
 	       (split-string (funcall func path) "\n"))
      lines))))
 
+(defun m:boolean(val)
+  "python like boolean 0 => '' => '() => are all converted to nil"
+  (if val
+      (if (equal val "")
+          nil
+        t)))
+
 (provide 'mromay-utils)
