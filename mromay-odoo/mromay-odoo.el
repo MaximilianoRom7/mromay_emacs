@@ -91,6 +91,12 @@ and waits n seconds optional"
    "xargs -L 1 dirname"))
 
 (defun odoo-find-paths-cache(path &optional cache)
+  (m:call-or-cache
+   (lambda(path) (odoo-find-paths path))
+   cache
+   path))
+
+(defun --odoo-find-paths-cache(path &optional cache)
   (if (and (file-exists-p cache)
            (m:boolean (setq cache-out (shell-run (concat "cat " cache)))))
       cache-out
