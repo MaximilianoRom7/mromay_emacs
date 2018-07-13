@@ -16,8 +16,9 @@ if you want to use ~/odoo then you do
 
 (setq
  pkgs '("/lib/python2.7/site-packages")
- odoo-root '("~")
- odoo-paths-cache-file (concat-home "/mromay_emacs/mromay-odoo/mromay-odoo-paths"))
+ odoo-root (list (concat-home "/odoo"))
+ odoo-paths-cache-file (concat-home "/mromay_emacs/mromay-odoo/mromay-odoo-paths")
+ script-start-odoo (concat-home "/mromay_emacs/mromay-odoo/python/start_odoo.py"))
 
 (defun message-wait(msg &optional wait)
   "Writes a message into the '*Message*' buffer
@@ -103,7 +104,7 @@ appling the function to the buffer itself"
 
   (interactive)
   (buffer-by-name-do "pdb" (lambda(buffers)
-			                       (buffer-kill-confirm buffers confirm)))
+			                       (m:buffer-kill-confirm buffers confirm)))
   )
 
 (defun m:buffer-kill-pdb(&optional confirm)
@@ -128,33 +129,43 @@ appling the function to the buffer itself"
   (kill-process-odoo)
   (kill-process-pdb))
 
+(defun directory-parent(dir)
+  "returns the parent directory, example:
+if called with /a/a/a/ => /a/a
+or if called with /a/a/a  => /a/a"
+  (directory-file-name
+   (file-name-directory
+    (directory-file-name dir))))
+
 (defun local:odoo-start(&optional start_script)
   (interactive)
-  (setq start_script (completing-read "Choose an odoo: " odoo-paths))
-  (setq command (concat "python2 -m pdb /root/.emacs.d/home/odoo.py "
-			                  "--path " start_script " "
-			                  "--config=/root/.emacs.d/home/odoo-server.conf"))
-  ;; python2 -m pdb /root/.emacs.d/home/odoo.py --path /home/skyline/Development/enterprise/1 --config=/root/.emacs.d/home/odoo-server.conf
-  ;; (message-wait command 10)
-  (realgud:pdb command t))
+  (let* ((start_script (completing-read "Choose an odoo: " odoo-paths))
+         (bin-python (concat (directory-parent start_script) "/bin/python"))
+         (odoo-server (concat start_script "/odoo-server.conf"))
+         (command (concat bin-python " "
+                          script-start-odoo " "
+                          "--config=" odoo-server)))
+    (realgud:pdb command t)))
 
+(defun odoo-find-paths(path &optional cache)
+  (shell-concat-run
+   (concat "find " path " -maxdepth 6 -type d -name addons")
+   "xargs -L 1 dirname"
+   (concat "while read l; "
+	         "do ls $l/sql_db.py 1> /dev/null 2> /dev/null && echo $l; "
+	         "done")
+   "xargs -L 1 dirname"))
 
-(defun local:odoo-kill-start(&optional start_script)
-  (interactive)
-  (setq odoo-paths (odoo-find-start-script odoo-root))
-  (kill-odoo)
-  ;; don't know why but without delay does not work
-  (sit-for 0.3)
-  (local:odoo-start start_script))
-
-(defun odoo-find-paths-cache(path cache)
-  (if cache
+(defun odoo-find-paths-cache(path &optional cache)
+  (if nil ;; cache
       (shell-run (concat "cat " cache))
     (let ((paths (odoo-find-paths path)))
       (if paths
 	        (shell-concat-run
 	         (concat "echo " paths)
-	         (concat "tee -a " cache))
+           ;;(if cache
+           ;;    (concat "tee -a " cache))
+           )
 	      ))))
 
 (defun filter-empty-string(strings)
@@ -175,14 +186,13 @@ appling the function to the buffer itself"
    #'(lambda(path) (odoo-find-paths-cache path odoo-paths-cache-file))
    odoo-root))
 
-(defun odoo-find-paths(path save)
-  (shell-concat-run
-   (concat "find " path " -maxdepth 6 -type d -name addons")
-   "xargs -L 1 dirname"
-   (concat "while read l; "
-	         "do ls $l/sql_db.py 1> /dev/null 2> /dev/null && echo $l; "
-	         "done")
-   "xargs -L 1 dirname"))
+(defun local:odoo-kill-start(&optional start_script)
+  (interactive)
+  (let ((odoo-paths (odoo-find-start-script odoo-root)))
+    (kill-odoo)
+    ;; don't know why but without delay does not work
+    (sit-for 0.3)
+    (local:odoo-start start_script)))
 
 (defun template-odoo-tree()
   (interactive)

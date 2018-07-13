@@ -1,7 +1,8 @@
 (defun shell-concat(&rest pipes)
-  "concatenate the arguments to create a command in bash"
+  "concatenate the list of arguments to create a command in bash
+also removes the nil values from the list before concatenating"
   (if pipes
-      (progn
+      (let ((pipes (remove-if nil pipes)))
 	      (setq command (car pipes))
 	      (cl-loop for pipe in (cdr pipes) do
 		             (setq command (concat command " | " pipe)))
