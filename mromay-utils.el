@@ -97,4 +97,17 @@ White space here is any of: space, tab, emacs newline (line feed, ASCII 10)."
 ;; testing
 ;; (local:keys-get-functions edebug-mode-map)
 
+(defun filter-empty-string(strings)
+  "given a list of strings
+retuns another list of not empty strings"
+  (-filter #'(lambda(x) (> (length x) 0)) strings))
+
+(defun foreach-line-apply(func lines)
+  (filter-empty-string
+   (-flatten
+    (mapcar
+     #'(lambda(path)
+	       (split-string (funcall func path) "\n"))
+     lines))))
+
 (provide 'mromay-utils)

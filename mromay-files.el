@@ -23,4 +23,19 @@ if the parent directory is not a real directory return nil"
 	       (load full)
 	       ))))
 
+(defun directory-parent(dir)
+  "returns the parent directory, example:
+if called with /a/a/a/ => /a/a
+or if called with /a/a/a  => /a/a"
+  (directory-file-name
+   (file-name-directory
+    (directory-file-name dir))))
+
+(defun concat-home(path)
+  "concats the user home directory with the path
+for example:
+if you want to use ~/odoo then you do
+(concat-home '/odoo')"
+  (concat (directory-file-name user-home-directory) path))
+
 (provide 'mromay-files)

@@ -141,4 +141,89 @@ MAX: Hi !
 	 (buffer-name (buffers-name buffers-ilike)))
     (mapc 'kill-buffer buffer-name)))
 
+
+
+(defun m:buffer-switch-create(buffer)
+  (switch-to-buffer (get-buffer-create (car buffer))))
+
+(defun m:buffer-kill(buffer)
+  "Same as kill-buffer"
+  (kill-buffer buffer))
+
+(defun m:buffer-kill-noconfirm(buffer)
+  "kill buffer without confirmation"
+  (interactive)
+  (with-current-buffer buffer
+    (let ((buffer-modified-p nil))
+      (kill-this-buffer))))
+
+(defun m:buffer-kill-confirm(buffer &optional force)
+  "Kill a buffer and ask confirmation or force kill without confirmation"
+  (if force
+      ;; do not ask
+      (mapc #'m:buffer-kill-noconfirm buffer)
+    ;; ask confirmation
+    (mapc #'m:buffer-kill buffer)))
+
+(defun m:buffer-name-contains(buffer name)
+  (if (string-match name (buffer-name buffer))
+      buffer))
+
+(defun m:buffer-name-contains-(name)
+  "Returns a lambda function that wraps m:buffer-name-contains
+and replaces the name attribute for a constant
+that means returns a predicate that can be used as a filter
+where the name of the buffer is a constant"
+  (lambda(buffer)
+    (m:buffer-name-contains buffer name)))
+
+(defun m:buffers-kill(buffers)
+  "To a list of buffers applies m:buffer-kill"
+  (m:buffers-do buffers #'m:buffer-kill))
+
+(defun m:buffers-kill-noconfirm(buffers)
+  "To a list of buffers applies m:buffer-kill-noconfirm"
+  (m:buffers-do buffers #'m:buffer-kill-noconfirm))
+
+(defun m:buffers-kill-confirm(buffers)
+  "To a list of buffers applies m:buffer-kill-confirm"
+  (m:buffers-do buffers #'m:buffer-kill-confirm))
+
+(defun m:buffers-do(buffers func)
+  (mapc func buffers))
+
+(defun m:buffers-filter-name(buffers name)
+  (remove-if-not
+   (m:buffer-name-contains- name)
+   buffers))
+
+(defun m:buffers-filter-name-do(buffers name func)
+  (m:buffers-do (m:buffers-filter-name buffers name) func))
+
+(defun m:buffers-filter-name-kill(buffers name)
+  (m:buffers-filter-name-do buffers name #'m:buffer-kill))
+
+(defun m:buffers-list()
+  (buffer-list))
+
+(defun m:buffers-list-filter-name(name)
+  (m:buffers-filter-name (m:buffers-list) name))
+
+(defun m:buffer-by-name-do(name func)
+  "Deprecated: applies a function over the NAME of a buffer instead of
+appling the function to the buffer itself"
+  (let ((buffers (filter-string name (mapcar #'buffer-name (buffer-list)))))
+    (if buffers
+	      (funcall func buffers))))
+
+(defun m:buffer-kill-ilike(buffer-ilike &optional confirm)
+  (interactive)
+  (m:buffer-by-name-do buffer-ilike
+                       (lambda(buffers)
+			                   (m:buffer-kill-confirm buffers confirm))))
+
+(defun m:buffer-kill-pdb(&optional confirm)
+  "kill all the pdb buffers"
+  (m:buffer-kill-ilike "pdb"))
+
 (provide 'mromay-buffers)
