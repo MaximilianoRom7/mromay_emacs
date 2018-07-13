@@ -92,7 +92,7 @@ and waits n seconds optional"
     (let ((paths (odoo-find-paths path)))
       (if paths
 	        (shell-concat-run
-	         (concat "echo " paths)
+	         (concat "echo '" paths "'")
            ;;(if cache
            ;;    (concat "tee -a " cache))
            )

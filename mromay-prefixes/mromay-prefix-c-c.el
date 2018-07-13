@@ -1,4 +1,5 @@
-;; just for testing
+(require 'mromay-sql)
+;; package requirements: ejc-sql
 
 (global-set-key (kbd "C-c v") 'buffer-split-paragraph)
 (global-set-key (kbd "C-c b") 'sql-run-buffer-paragraphs)
