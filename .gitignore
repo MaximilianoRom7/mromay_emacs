@@ -4,5 +4,6 @@
 *.pyc
 *.elc
 *.sql
+mromay-odoo/mromay-odoo-paths
 disabled.el
 sched

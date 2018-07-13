@@ -8,26 +8,30 @@
 (require 'mromay-odoo-templates)
 
 
-(defcustom script-start-odoo
+(defcustom m:odoo-script-start
   (concat-home "/mromay_emacs/mromay-odoo/python/start_odoo.py")
   "this is the python script that is used when starting any
 odoo no matter where it is found"
   :group 'mromay-odoo
   :type 'string)
 
-(defcustom odoo-paths-cache-file
+(defcustom m:odoo-cache-paths
   (concat-home "/mromay_emacs/mromay-odoo/mromay-odoo-paths")
   "this files contains all the paths where odoo where found previously"
   :group 'mromay-odoo
   :type 'string)
 
+
+(defcustom m:odoo-roots
+  (list (concat-home "/odoo"))
+  "within this directory are all the odoos that can be found by the function odoo-find-start-script"
+  :group 'mromay-odoo
+  :type 'list)
+
 (setq
  ;; disables the confirmation before killing a pdb buffer
  realgud-safe-mode nil
- pkgs '("/lib/python2.7/site-packages")
- ;; within this directory are all the odoos that can be found by the function odoo-find-start-script
- odoo-root (list (concat-home "/odoo"))
- )
+ pkgs '("/lib/python2.7/site-packages"))
 
 (defun message-wait(msg &optional wait)
   "Writes a message into the '*Message*' buffer
@@ -64,8 +68,8 @@ and waits n seconds optional"
 
 (defun m:odoo-kill()
   (interactive)
-  (m:odoo-process-kill)
-  (m:pdb-process-kill))
+  (m:pdb-process-kill)
+  (m:odoo-process-kill))
 
 (defun m:odoo-start(&optional start_script)
   (interactive)
@@ -73,7 +77,7 @@ and waits n seconds optional"
          (bin-python (concat (directory-parent start_script) "/bin/python"))
          (odoo-server (concat start_script "/odoo-server.conf"))
          (command (concat bin-python " "
-                          script-start-odoo " "
+                          m:odoo-script-start " "
                           "--config=" odoo-server)))
     (realgud:pdb command t)))
 
@@ -87,25 +91,24 @@ and waits n seconds optional"
    "xargs -L 1 dirname"))
 
 (defun odoo-find-paths-cache(path &optional cache)
-  (if nil ;; cache
-      (shell-run (concat "cat " cache))
+  (if (and (file-exists-p cache)
+           (setq cache-out (shell-run (concat "cat " cache))))
+      cache-out
     (let ((paths (odoo-find-paths path)))
       (if paths
 	        (shell-concat-run
 	         (concat "echo '" paths "'")
-           ;;(if cache
-           ;;    (concat "tee -a " cache))
-           )
-	      ))))
+           (if cache
+               (concat "tee -a " cache)))))))
 
-(defun odoo-find-start-script(odoo-root)
+(defun odoo-find-start-script(odoo-roots)
   (foreach-line-apply
-   #'(lambda(path) (odoo-find-paths-cache path odoo-paths-cache-file))
-   odoo-root))
+   #'(lambda(path) (odoo-find-paths-cache path m:odoo-cache-paths))
+   odoo-roots))
 
 (defun m:odoo-kill-start(&optional start_script)
   (interactive)
-  (let ((odoo-paths (odoo-find-start-script odoo-root)))
+  (let ((odoo-paths (odoo-find-start-script m:odoo-roots)))
     (m:odoo-kill)
     ;; don't know why but without delay does not work
     (sit-for 0.3)
@@ -126,6 +129,6 @@ ask confirmation to kill the buffer is the pdb process is still running"
     (realgud:pdb command nil)))
 
 (global-set-key (kbd "C-c o") (local:wrapp 'm:odoo-kill-start '(t)))
-;; (global-set-key (kbd "C-c o") 'm:odoo-start)
+;; (global-set-key (kbd "C-c o") 'm:odoo-start-old)
 
 (provide 'mromay-odoo)
