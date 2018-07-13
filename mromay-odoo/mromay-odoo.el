@@ -1,3 +1,4 @@
+(require 'realgud)
 (require 'mromay-utils)
 (require 'mromay-files)
 (require 'mromay-buffers)
@@ -7,13 +8,26 @@
 (require 'mromay-odoo-templates)
 
 
-(setq realgud-safe-mode nil)
+(defcustom script-start-odoo
+  (concat-home "/mromay_emacs/mromay-odoo/python/start_odoo.py")
+  "this is the python script that is used when starting any
+odoo no matter where it is found"
+  :group 'mromay-odoo
+  :type 'string)
+
+(defcustom odoo-paths-cache-file
+  (concat-home "/mromay_emacs/mromay-odoo/mromay-odoo-paths")
+  "this files contains all the paths where odoo where found previously"
+  :group 'mromay-odoo
+  :type 'string)
 
 (setq
+ ;; disables the confirmation before killing a pdb buffer
+ realgud-safe-mode nil
  pkgs '("/lib/python2.7/site-packages")
+ ;; within this directory are all the odoos that can be found by the function odoo-find-start-script
  odoo-root (list (concat-home "/odoo"))
- odoo-paths-cache-file (concat-home "/mromay_emacs/mromay-odoo/mromay-odoo-paths")
- script-start-odoo (concat-home "/mromay_emacs/mromay-odoo/python/start_odoo.py"))
+ )
 
 (defun message-wait(msg &optional wait)
   "Writes a message into the '*Message*' buffer
