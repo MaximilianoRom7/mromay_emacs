@@ -22,23 +22,36 @@ and waits n seconds optional"
   (let ((wait (or wait 1)))
     (sit-for wait)))
 
-(defun kill-process-odoo()
+(defun m:odoo-process-kill(&optional port)
+  "kills the odoo process that is listening on port 8069"
+  (let ((port (or port "8069")))
+    (shell-concat-run
+     "lsof -i"
+     "grep python"
+     "grep LISTEN"
+     (concat "grep ':" port "'")
+     "tr -s ' '"
+     "cut -d ' ' -f2"
+     "xargs -L 1 kill -9")))
+
+(defun m:odoo-process-kill-all()
+  "kills all the python proces, gets the pid with ps aux and grep"
   (shell-concat-run
-   "lsof -i"
+   "ps aux"
    "grep python"
-   "grep LISTEN"
-   "grep ':80'"
+   "grep odoo"
+   "grep -v 'grep'"
    "tr -s ' '"
-   "cut -d ' ' -f2"
+   "cut -d ' ' -f 2"
    "xargs -L 1 kill -9"))
 
-(defun kill-process-pdb()
+(defun m:pdb-process-kill()
     (m:buffer-kill-pdb))
 
-(defun kill-odoo()
+(defun m:odoo-kill()
   (interactive)
-  (kill-process-odoo)
-  (kill-process-pdb))
+  (m:odoo-process-kill)
+  (m:pdb-process-kill))
 
 (defun m:odoo-start(&optional start_script)
   (interactive)
@@ -79,21 +92,10 @@ and waits n seconds optional"
 (defun m:odoo-kill-start(&optional start_script)
   (interactive)
   (let ((odoo-paths (odoo-find-start-script odoo-root)))
-    (kill-odoo)
+    (m:odoo-kill)
     ;; don't know why but without delay does not work
     (sit-for 0.3)
     (m:odoo-start start_script)))
-
-(defun m:odoo-kill-process-all()
-  "kills all the python proces, gets the pid with ps aux and grep"
-  (shell-concat-run
-   "ps aux"
-   "grep python"
-   "grep odoo"
-   "grep -v 'grep'"
-   "tr -s ' '"
-   "cut -d ' ' -f 2"
-   "xargs -L 1 kill -9"))
 
 (defun m:odoo-start-old()
   (interactive)

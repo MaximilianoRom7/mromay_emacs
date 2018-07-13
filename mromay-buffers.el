@@ -5,35 +5,35 @@
 (defun read-only(active)
   (if active
       (if (not buffer-read-only)
-	  (toggle-read-only))
+	        (toggle-read-only))
     (if buffer-read-only
-	(toggle-read-only))))
+	      (toggle-read-only))))
 
 (defun buffer-unblock(func &optional buffer-name args)
   "disable buffer read only if it is and executes the function
 after execution makes buffer read only"
   (let ((args (or args nil))
-	(buffer-name (or buffer-name (current-buffer-name))))
+	      (buffer-name (or buffer-name (current-buffer-name))))
     (get-buffer-create buffer-name)
     (with-current-buffer buffer-name
       (let ((read buffer-read-only))
-	(read-only nil)
-	(if args
-	    (apply func args)
-	  (funcall func))
-	(read-only read)))))
+	      (read-only nil)
+	      (if args
+	          (apply func args)
+	        (funcall func))
+	      (read-only read)))))
 
 (defun loop-lines(lines func)
   (cl-loop for line in (split-string lines "\n") do
-	   (funcall func line)))
+	         (funcall func line)))
 
 (defun lines-insert-margin(lines &optional margin name-buffer)
   (let ((margin (or margin ""))
-	(name-buffer (or name-buffer buffer-default-output)))
+	      (name-buffer (or name-buffer buffer-default-output)))
     (loop-lines lines
-		(lambda(line)
-		  (with-current-buffer name-buffer
-		    (insert-unblock (concat "\n" margin line)))))))
+		            (lambda(line)
+		              (with-current-buffer name-buffer
+		                (insert-unblock (concat "\n" margin line)))))))
 
 (defun insert-unblock(content)
   (buffer-unblock (lambda() (insert content))))
@@ -112,24 +112,24 @@ MAX: Hi !
   (let ((buffer-name (or buffer-name buffer-default-output)))
     (with-temp-buffer
       (let ((content (file-contents path))
-	    (margin (concat path ": ")))
-	(lines-insert-margin content margin buffer-name)))))
+	          (margin (concat path ": ")))
+	      (lines-insert-margin content margin buffer-name)))))
 
-(defun buffers-map-name()
+(defun m:buffers-map-name()
   (let* ((buffers (buffer-list))
-	 buffers-name)
+	       buffers-name)
     (cl-loop for buffer in buffers do
-	     (setq buffers-name
-		   (cons (list buffer (buffer-name buffer)) buffers-name)))
+	           (setq buffers-name
+		               (cons (list buffer (buffer-name buffer)) buffers-name)))
     buffers-name))
 
-(defun buffers-ilike(str)
-  (let* ((buffers-name (buffers-map-name)))
+(defun m:buffers-ilike(str)
+  (let* ((buffers-name (m:buffers-map-name)))
     (cl-remove-if-not
      (lambda(buffer-name)
        (if (string-match-p str (nth 1 buffer-name))
-	   t
-	 nil))
+	         t
+	       nil))
      buffers-name)
     ))
 
@@ -137,11 +137,9 @@ MAX: Hi !
   (mapcar (lambda(buffer-name) (nth 1 buffer-name)) buffer-name))
 
 (defun buffers-kill-ilike(str)
-  (let* ((buffers-ilike (buffers-ilike str))
-	 (buffer-name (buffers-name buffers-ilike)))
+  (let* ((buffers-ilike (m:buffers-ilike str))
+	       (buffer-name (buffers-name buffers-ilike)))
     (mapc 'kill-buffer buffer-name)))
-
-
 
 (defun m:buffer-switch-create(buffer)
   (switch-to-buffer (get-buffer-create (car buffer))))
